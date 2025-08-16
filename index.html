@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FTX SHOP/SERVICES</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(to bottom, #d0e6ff, #c7bfff);
+      overflow: hidden;
+      position: relative;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    h1 {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 3em;
+      text-align: center;
+      color: white;
+      text-shadow: 2px 2px 8px #6b6bff;
+      z-index: 10;
+    }
+
+    .rain {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .drop {
+      position: absolute;
+      width: 2px;
+      height: 20px;
+      background: white;
+      opacity: 0.5;
+      animation: fall 1s linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>FTX SHOP/SERVICES</h1>
+  <div class="rain" id="rain"></div>
+
+  <script>
+    const rain = document.getElementById("rain");
+
+    for (let i = 0; i < 200; i++) {
+      const drop = document.createElement("div");
+      drop.classList.add("drop");
+      drop.style.left = Math.random() * 100 + "vw";
+      drop.style.animationDuration = (0.5 + Math.random()) + "s";
+      drop.style.opacity = Math.random();
+      rain.appendChild(drop);
+    }
+  </script>
+</body>
+</html>
