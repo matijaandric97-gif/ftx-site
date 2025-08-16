@@ -1,76 +1,82 @@
+mysite/
+├── dist/
+│   └── output.css
+├── input.css
+├── index.html
+├── package.json
+├── postcss.config.js
+└── tailwind.config.js
+index.html
+Evo primera kako može da izgleda. Kopiraj to u svoj mysite/index.html fajl:
+
+html
+Копирај кȏд
 <!DOCTYPE html>
-<html lang="sr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FTX SHOP/SERVICES</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      height: 100vh;
-      background: linear-gradient(to bottom, #d0e6ff, #c7bfff);
-      overflow: hidden;
-      position: relative;
-      font-family: Arial, sans-serif;
-      color: white;
-    }
-
-    h1 {
-      position: absolute;
-      top: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 3em;
-      text-align: center;
-      color: white;
-      text-shadow: 2px 2px 8px #6b6bff;
-      z-index: 10;
-    }
-
-    .rain {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: transparent;
-      pointer-events: none;
-    }
-
-    .drop {
-      position: absolute;
-      width: 2px;
-      height: 20px;
-      background: white;
-      opacity: 0.5;
-      animation: fall 1s linear infinite;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(100vh);
-      }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booster Site</title>
+  <link href="./dist/output.css" rel="stylesheet">
 </head>
-<body>
-  <h1>FTX SHOP/SERVICES</h1>
-  <div class="rain" id="rain"></div>
+<body class="bg-gray-900 text-white antialiased">
 
-  <script>
-    const rain = document.getElementById("rain");
+  <!-- Header / Hero -->
+  <header class="bg-purple-700 py-20 text-center">
+    <h1 class="text-5xl font-bold animate-fade-in">Cheapest Discord Nitro</h1>
+    <p class="mt-4 text-xl animate-fade-in delay-150">Providing high quality server boosts with automatic delivery</p>
+    <button class="mt-8 px-6 py-3 bg-yellow-400 text-gray-900 font-semibold rounded-lg hover:bg-yellow-500 transition-all animate-fade-in delay-300">
+      Check Our Products
+    </button>
+  </header>
 
-    for (let i = 0; i < 200; i++) {
-      const drop = document.createElement("div");
-      drop.classList.add("drop");
-      drop.style.left = Math.random() * 100 + "vw";
-      drop.style.animationDuration = (0.5 + Math.random()) + "s";
-      drop.style.opacity = Math.random();
-      rain.appendChild(drop);
-    }
-  </script>
+  <!-- Why Choose Us -->
+  <section class="py-16 px-4">
+    <h2 class="text-4xl font-bold text-center mb-12">Why Choose Us?</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-gray-800 p-6 rounded-lg hover:shadow-lg transition-shadow">
+        <h3 class="font-semibold text-xl mb-2">Instant Delivery</h3>
+        <p>Delivery within 30 seconds.</p>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-lg hover:shadow-lg transition-shadow">
+        <h3 class="font-semibold text-xl mb-2">Top Quality</h3>
+        <p>Committed to providing superior service.</p>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-lg hover:shadow-lg transition-shadow">
+        <h3 class="font-semibold text-xl mb-2">Many Payment Methods</h3>
+        <p>We accept PayPal, crypto, discounts from time to time.</p>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-lg hover:shadow-lg transition-shadow">
+        <h3 class="font-semibold text-xl mb-2">Dedicated Support</h3>
+        <p>Help 24/7 to make your experience stress-free.</p>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-lg hover:shadow-lg transition-shadow">
+        <h3 class="font-semibold text-xl mb-2">Unmatched Expertise</h3>
+        <p>Professionals guaranteeing optimal results.</p>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-lg hover:shadow-lg transition-shadow">
+        <h3 class="font-semibold text-xl mb-2">Competitive Pricing</h3>
+        <p>Value for your investment.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Products -->
+  <section class="py-16 px-4 bg-gray-100 text-gray-900">
+    <h2 class="text-4xl font-bold text-center mb-12">Our Products</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Example card -->
+      <div class="bg-white p-6 rounded-lg shadow hover:shadow-2xl transition-shadow">
+        <h3 class="text-xl font-semibold mb-2">6 Server Boosts [1 Month]</h3>
+        <p class="mb-1">1 Month Warranty</p>
+        <p class="mb-1">Instant Delivery</p>
+        <p class="mb-1">Level 1 Perks</p>
+        <p class="text-2xl font-bold mt-4">$4.99</p>
+        <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">Buy Now</button>
+      </div>
+      <!-- Kopiraj ovakav karticu i stavi više proizvoda -->
+    </div>
+  </section>
+
 </body>
 </html>
