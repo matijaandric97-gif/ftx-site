@@ -1,0 +1,152 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: #0a0a0f;
+  color: white;
+  line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.navbar a {
+  margin: 0 15px;
+  color: #aaa;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.navbar a:hover {
+  color: #fff;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+}
+
+/* Hero */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: radial-gradient(circle at top, #1a1a2e, #0a0a0f);
+}
+
+.hero h1 {
+  font-size: 40px;
+  margin-bottom: 15px;
+  color: #9b5cff;
+  text-transform: uppercase;
+}
+
+.hero-img {
+  width: 100%;
+  max-width: 900px;
+  margin-top: 30px;
+}
+
+/* Sections */
+section {
+  padding: 100px 50px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease-out;
+}
+
+section.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 30px;
+  color: #9b5cff;
+}
+
+/* Features */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.card {
+  background: #151520;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Products */
+.products .grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.product {
+  background: linear-gradient(145deg, #7f5eff, #4a3cbf);
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+
+/* Reviews */
+.reviews {
+  text-align: center;
+}
+
+.review {
+  margin: 15px auto;
+  max-width: 600px;
+  background: #151520;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* FAQ */
+.faq {
+  text-align: center;
+  max-width: 700px;
+  margin: auto;
+}
+
+/* Footer */
+footer {
+  background: #111;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #666;
+}
