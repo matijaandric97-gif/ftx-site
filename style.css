@@ -771,3 +771,8 @@ body::after{
   background: linear-gradient(90deg, #8b5cf6, #6366f1);
   font-weight: bold;
 }
+
+.categories li a {
+  color: #fff !important;       /* bela boja */
+  font-weight: bold !important; /* bold */
+}
