@@ -1,20 +1,14 @@
-<<<<<<< HEAD
+/* Reset */
 * {
-  body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden; /* horizontalni skrol isključen */
-  overflow-y: auto;   /* vertikalni skrol dozvoljen */
-}
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
 }
 
 body {
-  background: #0a0a0f;
-  color: white;
+  font-family: Arial, sans-serif;
+  background: #0f0f17;
+  color: #fff;
   line-height: 1.6;
 }
 
@@ -23,756 +17,179 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 50px;
-  position: fixed;
+  padding: 20px;
+  background: #1a1a25;
+  position: sticky;
   top: 0;
-  width: 100%;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(10px);
   z-index: 1000;
 }
 
-.navbar a {
-  margin: 0 15px;
-  color: #aaa;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-.navbar a:hover {
-  color: #fff;
-}
-
-.logo {
-  font-size: 22px;
-  font-weight: 800;
-  color: #fff;
-}
-
-/* Hero */
-.hero {
-  height: 100vh;           /* zauzima samo jedan ekran */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url("pickamrtva-removebg-preview.png.png") no-repeat center center/cover;
-  z-index: -1; /* ovo gura pozadinu iza teksta */);
-}
-
-.hero h1 {
-  font-size: 40px;
-  margin-bottom: 15px;
-  color: #9b5cff;
-  text-transform: uppercase;
-}
-
-.hero-img {
-  width: 100%;
-  max-width: 900px;
-  margin-top: 30px;
-}
-
-/* Sections */
-.choose-us {
-  padding: 60px 20px;
-  background: #111;
-  text-align: center;
-}
-
-.choose-us h2 {
-  font-size: 2rem;
-  color: #fff;
-  margin-bottom: 40px;
-}
-
-.choose-us h2 span {
-  color: #6c63ff;
-}
-
-.choose-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.choose-card {
-  background: #1a1a1a;
-  padding: 20px;
-  border-radius: 12px;
-  text-align: left;
-  color: #ccc;
-  transition: transform 0.3s ease;
-}
-
-.choose-card:hover {
-  transform: translateY(-5px);
-}
-
-.choose-card h3 {
-  color: #fff;
-  margin: 15px 0 10px;
-}
-
-.icon {
+.navbar .logo {
   font-size: 24px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  color: #fff;
-}
-
-.red { background: #ff4757; }
-.blue { background: #3742fa; }
-.green { background: #2ed573; }
-.yellow { background: #ffa502; }
-.purple { background: #a55eea; }
-.orange { background: #e17055; }
-
-.star-icon {
-  margin-top: 30px;
-  color: gold;
-  font-size: 28px;
-}
-
-/* Sections */
-section {
-  padding: 100px 50px;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1s ease-out;
-}
-
-section.fade-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 40px;
-  font-size: 30px;
-  color: #9b5cff;
-}
-
-/* Features */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  max-width: 800px;
-  margin: auto;
-}
-
-.card {
-  background: #151520;
-  padding: 30px;
-  border-radius: 12px;
-  text-align: center;
-  font-weight: 600;
-}
-
-/* Products */
-.products .grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
-  max-width: 800px;
-  margin: auto;
-}
-
-.product {
-  background: linear-gradient(145deg, #7f5eff, #4a3cbf);
-  padding: 30px;
-  border-radius: 15px;
-  text-align: center;
   font-weight: bold;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  color: #61dafb;
 }
 
-/* Reviews */
-.reviews {
-  text-align: center;
-}
-
-.review {
-  margin: 15px auto;
-  max-width: 600px;
-  background: #151520;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-/* FAQ */
-.faq {
-  text-align: center;
-  max-width: 700px;
-  margin: auto;
-}
-
-/* Footer */
-footer {
-  background: #111;
-  text-align: center;
-  padding: 20px;
-  font-size: 14px;
-  color: #666;
-}
-=======
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
-}
-
-body {
-  background: #0a0a0f;
-  color: white;
-  line-height: 1.6;
-}
-
-/* Navbar */
-.navbar {
+.navbar ul {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 50px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
+  list-style: none;
+}
+
+.navbar li {
+  margin: 0 15px;
 }
 
 .navbar a {
-  margin: 0 15px;
-  color: #aaa;
+  color: #fff;
   text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s;
+  transition: color 0.3s;
 }
 
 .navbar a:hover {
-  color: #fff;
-}
-
-.logo {
-  font-size: 22px;
-  font-weight: 800;
-  color: #fff;
+  color: #61dafb;
 }
 
 /* Hero */
 .hero {
-  height: 100vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: radial-gradient(circle at top, #1a1a2e, #0a0a0f);
+  background: linear-gradient(120deg, #1a1a25, #232338);
 }
 
 .hero h1 {
-  font-size: 40px;
-  margin-bottom: 15px;
-  color: #9b5cff;
-  text-transform: uppercase;
+  font-size: 48px;
 }
 
-.hero-img {
-  width: 100%;
-  max-width: 900px;
-  margin-top: 30px;
+.hero h1 span {
+  color: #61dafb;
 }
 
-/* Sections */
-.choose-us {
-  padding: 60px 20px;
-  background: #111;
-  text-align: center;
-}
-
-.choose-us h2 {
-  font-size: 2rem;
-  color: #fff;
-  margin-bottom: 40px;
-}
-
-.choose-us h2 span {
-  color: #6c63ff;
-}
-
-.choose-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.choose-card {
-  background: #1a1a1a;
-  padding: 20px;
-  border-radius: 12px;
-  text-align: left;
+.hero p {
+  margin: 20px 0;
+  font-size: 20px;
   color: #ccc;
-  transition: transform 0.3s ease;
 }
 
-.choose-card:hover {
-  transform: translateY(-5px);
-}
-
-.choose-card h3 {
-  color: #fff;
-  margin: 15px 0 10px;
-}
-
-.icon {
-  font-size: 24px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
+.btn {
+  background: #61dafb;
+  color: #0f0f17;
+  padding: 12px 24px;
+  border: none;
   border-radius: 8px;
-  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s, background 0.3s;
 }
 
-.red { background: #ff4757; }
-.blue { background: #3742fa; }
-.green { background: #2ed573; }
-.yellow { background: #ffa502; }
-.purple { background: #a55eea; }
-.orange { background: #e17055; }
-
-.star-icon {
-  margin-top: 30px;
-  color: gold;
-  font-size: 28px;
+.btn:hover {
+  background: #fff;
+  transform: scale(1.05);
 }
 
-/* Sections */
-section {
-  padding: 100px 50px;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1s ease-out;
-}
-
-section.fade-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-h2 {
+/* About */
+.about {
+  padding: 80px 20px;
   text-align: center;
-  margin-bottom: 40px;
-  font-size: 30px;
-  color: #9b5cff;
+  background: #1a1a25;
 }
 
-/* Features */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  max-width: 800px;
-  margin: auto;
-}
-
-.card {
-  background: #151520;
-  padding: 30px;
-  border-radius: 12px;
-  text-align: center;
-  font-weight: 600;
+.about h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
 }
 
 /* Products */
-.products .grid {
+.products {
+  display: flex;
+  padding: 80px 20px;
+  background: #0f0f17;
+}
+
+.sidebar {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 40px;
+}
+
+.sidebar button {
+  padding: 15px;
+  background: #1a1a25;
+  border: none;
+  margin-bottom: 10px;
+  color: #fff;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.sidebar button:hover {
+  background: #61dafb;
+  color: #0f0f17;
+}
+
+.content {
+  flex: 1;
+}
+
+.product-section {
+  display: none;
+}
+
+.product-section:not(.hidden) {
+  display: block;
+}
+
+.card-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
-  max-width: 800px;
-  margin: auto;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
 }
 
-.product {
-  background: linear-gradient(145deg, #7f5eff, #4a3cbf);
-  padding: 30px;
-  border-radius: 15px;
-  text-align: center;
-  font-weight: bold;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-}
-
-/* Reviews */
-.reviews {
-  text-align: center;
-}
-
-.review {
-  margin: 15px auto;
-  max-width: 600px;
-  background: #151520;
+.card {
+  background: #1a1a25;
   padding: 20px;
   border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
 }
 
 /* FAQ */
 .faq {
-  text-align: center;
-  max-width: 700px;
-  margin: auto;
+  padding: 80px 20px;
+  background: #1a1a25;
 }
 
-/* Footer */
-footer {
-  background: #111;
+.faq h2 {
   text-align: center;
+  margin-bottom: 30px;
+}
+
+.faq-item {
+  margin: 20px 0;
+}
+
+/* Clients */
+.clients {
+  padding: 80px 20px;
+  background: #0f0f17;
+}
+
+.clients h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.footer {
+  background: #1a1a25;
   padding: 20px;
-  font-size: 14px;
-  color: #666;
-}
-
-/* neki kurac opet */
-/* HERO WRAPPER */
-.hero-parallax{
-  position: relative;
-  overflow: hidden;
-  min-height: 82vh;            /* po želji promeni visinu */
-  display: grid;
-  place-items: center;
-  isolation: isolate;          /* da z-index slojevi rade kako treba */
-}
-
-/* Animirani gradijent (kao boosts.gg vibe) */
-.bg-gradient{
-  position:absolute; inset:0;
-  background: linear-gradient(120deg,#4e54c8, #6a74f7 35%, #7f6bff 60%, #6246ea);
-  background-size: 300% 300%;
-  animation: gradientShift 18s ease-in-out infinite;
-  z-index: 0;
-  filter: saturate(1.05);
-}
-@keyframes gradientShift{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
-
-/* Opšti stil za slojeve */
-.layer{
-  position:absolute;
-  inset:auto;
-  left:0; right:0;
-  will-change: transform;
-  transform: translate3d(var(--tx,0), var(--ty,0), 0);
-  pointer-events:none;
-}
-
-/* Oblaci – radi i BEZ slika (crtani CSS oblačići) */
-.clouds{
-  top:0; height: 100%;
-  background:
-    radial-gradient(24rem 10rem at 15% 70%, rgba(255,255,255,.07) 0 60%, transparent 61%) no-repeat,
-    radial-gradient(30rem 12rem at 80% 30%, rgba(255,255,255,.06) 0 60%, transparent 61%) no-repeat,
-    radial-gradient(18rem 8rem  at 60% 80%, rgba(255,255,255,.05) 0 60%, transparent 61%) no-repeat;
-  animation: drift 30s linear infinite;
-  filter: blur(2px);
-  z-index: 2;
-}
-@keyframes drift{
-  from{ background-position: -10vw 0, 60vw 0, 20vw 0; }
-  to  { background-position: 90vw 0, -40vw 0, 120vw 0; }
-}
-
-/* Brda / magla pri dnu – takođe radi bez slika */
-.hills{
-  bottom:-6vh; height: 40vh;
-  background:
-    radial-gradient(60rem 20rem at 40% 100%, rgba(255,255,255,.06) 0 60%, transparent 61%) no-repeat,
-    radial-gradient(70rem 22rem at 70% 105%, rgba(255,255,255,.05) 0 60%, transparent 61%) no-repeat;
-  z-index: 3;
-  animation: floatY 12s ease-in-out infinite;
-}
-
-/* Ako IMAŠ artove (PNG/SVG) ubaci ih ovde: */
-.island-left{
-  bottom:0; left:-2vw; width: 40vw; height: 55vh; z-index:4;
-  background: url("images/hero-left.png") center/contain no-repeat;
-  animation: floatY 10s ease-in-out infinite;
-}
-.island-right{
-  bottom:0; right:-2vw; width: 40vw; height: 55vh; z-index:4;
-  background: url("hero-right.png") center/contain no-repeat;
-  animation: floatY 11s ease-in-out infinite reverse;
-}
-
-/* Suptilno plutanje slojeva */
-@keyframes floatY{
-  0%,100%{ transform: translate3d(var(--tx,0), calc(var(--ty,0) + 0px), 0); }
-  50%     { transform: translate3d(var(--tx,0), calc(var(--ty,0) - 14px), 0); }
-}
-
-/* Tekst ostaje iznad svega */
-.hero-parallax .wrap{ position:relative; z-index: 10; }
-
-/* RESPONSIVE – smanji “ostrva” na telefonu */
-@media (max-width: 1024px){
-  .island-left, .island-right{ width:46vw; height:40vh; opacity:.85; }
-}
-@media (max-width: 640px){
-  .island-left, .island-right{ display:none; }  /* sakrij na malim ekranima po želji */
-}
-/* GENERAL */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  overflow-x: hidden;
-  overflow-y: auto;
-  background: #111;
-  color: white;
-}
-
-section {
-  padding: 100px 20px;
-  position: relative;
-  z-index: 2;
-}
-
-/* HERO */
-.hero {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 1;
   text-align: center;
-  color: white;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url("pickamrtva-removebg-preview.png") no-repeat center center/cover;
-  z-index: -1; /* pozadina iza teksta */
-  filter: brightness(0.6);
-}
-
-.hero-content {
-  z-index: 2;
-}
-
-/* ABOUT */
-.about {
-  background: #1a1a1a;
-}
-
-/* PRODUCTS */
-.products {
-  background: #222;
-}
-
-.product-list {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-}
-
-.product-card {
-  background: #333;
-  padding: 30px;
-  border-radius: 10px;
-}
-section {
-  position: relative;
-  z-index: 2;
-  padding: 100px 20px;
-}
-.hero {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(to bottom, #3b2eb5, #5f47e0);
-    padding: 100px 50px;
-    overflow: hidden;
-}
-
-.hero-left img {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 400px;
-}
-
-.hero-right img {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 400px;
-}
-
-.hero-content {
-    text-align: center;
-    color: white;
-    max-width: 600px;
-    margin: 0 auto;
-    z-index: 10;
-}
-
-/* ===== boosts.gg style full-page gradient ===== */
-:root{
-  --bg1:#6f7cfb;
-  --bg2:#6d5aff;
-  --bg3:#4b2bd1;
-  --glow: rgba(255,255,255,.08);
-}
-
-html,body{
-  height:100%;
-}
-
-body{
-  background:
-    radial-gradient(1200px 600px at 50% -200px, rgba(255,255,255,.06), transparent 60%),
-    linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 40%, var(--bg3) 100%);
-  color:#eaeaea;
-  overflow-x:hidden;
-}
-
-/* mala “zrnasta” tekstura da deluje mekše */
-body::after{
-  content:"";
-  position:fixed; inset:0;
-  pointer-events:none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 .04'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity:.35;
-}
-
-/* ===== HERO container ===== */
-.hero{
-  position:relative;
-  min-height: 92vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  overflow:hidden;
-  isolation:isolate; /* da pseudo-elementi budu iza */
-}
-
-/* suptilan spotlight u sredini */
-.hero::before{
-  content:"";
-  position:absolute; inset:-20% -10% -10% -10%;
-  background: radial-gradient(60% 40% at 50% 30%, var(--glow), transparent 60%);
-  z-index:-2;
-}
-
-/* ===== ostrva levo/desno (kao boosts.gg) ===== */
-.hero::after,
-.hero::marker{ /* iskorišćavamo :marker kao drugi pseudo bez konflikta */
-  content:"";
-  position:absolute;
-  bottom:-18vh;
-  width:min(48vw, 720px);
-  height:min(48vw, 720px);
-  background-repeat:no-repeat;
-  background-size:contain;
-  filter: drop-shadow(0 20px 30px rgba(0,0,0,.35));
-  z-index:-1;
-  animation: float 14s ease-in-out infinite;
-}
-
-/* levo ostrvo */
-.hero::after{
-  left:-6vw;
-  background-image:url('images/island-left.png');
-  animation-delay: 0s;
-}
-
-/* desno ostrvo */
-.hero::marker{
-  right:-6vw;
-  background-image:url('images/island-right.png');
-  animation-delay: 2s;
-}
-
-/* suptilno “lelujanje” */
-@keyframes float{
-  0%,100%{ transform: translateY(0) }
-  50%{ transform: translateY(-10px) }
-}
-
-/* dodatno – blagi glow iza CTA dugmeta ako želiš */
-.btn{
-  position:relative;
-}
-.btn::after{
-  content:"";
-  position:absolute; inset:-14px -22px;
-  background: radial-gradient(30% 40% at 50% 50%, rgba(0,0,0,.35), transparent 70%);
-  z-index:-1; border-radius:999px;
-}
-
-/* RESPONSIVE – sakrij ostrva na malim ekranima da ne preklapaju tekst */
-@media (max-width: 900px){
-  .hero::after, .hero::marker{ display:none; }
-}
-
-/* Sidebar categories tekst bela i bold */
-.sidebar .categories li a {
-  color: #ffffff;        /* bela boja */
-  font-weight: bold;     /* bold */
-  text-decoration: none; /* da nema underline */
-  display: block;
-  padding: 10px 15px;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-}
-
-/* Hover efekat */
-.sidebar .categories li a:hover {
-  color: #8b5cf6;        /* ljubičasta na hover */
-  background: rgba(139, 92, 246, 0.1);
-}
-
-/* Active state (ako koristiš klasu "active" na trenutnoj kategoriji) */
-.sidebar .categories li a.active {
-  color: #ffffff;
-  background: linear-gradient(90deg, #8b5cf6, #6366f1);
-  font-weight: bold;
-}
-
-.categories li a {
-  color: #fff !important;       /* bela boja */
-  font-weight: bold !important; /* bold */
 }
