@@ -68,6 +68,73 @@ body {
 }
 
 /* Sections */
+.choose-us {
+  padding: 60px 20px;
+  background: #111;
+  text-align: center;
+}
+
+.choose-us h2 {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+.choose-us h2 span {
+  color: #6c63ff;
+}
+
+.choose-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.choose-card {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: left;
+  color: #ccc;
+  transition: transform 0.3s ease;
+}
+
+.choose-card:hover {
+  transform: translateY(-5px);
+}
+
+.choose-card h3 {
+  color: #fff;
+  margin: 15px 0 10px;
+}
+
+.icon {
+  font-size: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.red { background: #ff4757; }
+.blue { background: #3742fa; }
+.green { background: #2ed573; }
+.yellow { background: #ffa502; }
+.purple { background: #a55eea; }
+.orange { background: #e17055; }
+
+.star-icon {
+  margin-top: 30px;
+  color: gold;
+  font-size: 28px;
+}
+
+/* Sections */
 section {
   padding: 100px 50px;
   opacity: 0;
