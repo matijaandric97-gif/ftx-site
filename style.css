@@ -747,3 +747,27 @@ body::after{
 @media (max-width: 900px){
   .hero::after, .hero::marker{ display:none; }
 }
+
+/* Sidebar categories tekst bela i bold */
+.sidebar .categories li a {
+  color: #ffffff;        /* bela boja */
+  font-weight: bold;     /* bold */
+  text-decoration: none; /* da nema underline */
+  display: block;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+/* Hover efekat */
+.sidebar .categories li a:hover {
+  color: #8b5cf6;        /* ljubičasta na hover */
+  background: rgba(139, 92, 246, 0.1);
+}
+
+/* Active state (ako koristiš klasu "active" na trenutnoj kategoriji) */
+.sidebar .categories li a.active {
+  color: #ffffff;
+  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  font-weight: bold;
+}
