@@ -1,71 +1,764 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Booster Site</title>
-  <link href="./dist/output.css" rel="stylesheet">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FTX Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="dist/output.css" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e0f13; --panel:#151722; --muted:#9aa0a6;
+    --primary:#6d5efc; --primary2:#9b5cf7; --accent:#5cc9f5; --ok:#67f2a2;
+    --ink:#e9edff;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:var(--bg);color:#fff;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;scroll-behavior:smooth}
+
+  /* NAV */
+  .nav{position:sticky;top:0;z-index:50;background:#12131aee;border-bottom:4px solid var(--primary);backdrop-filter:blur(8px)}
+  .nav .inner{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 20px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.2px}
+  .brand .dot{color:#6aa0ff}
+  .links{display:flex;align-items:center;gap:26px;font-weight:700}
+  .links a{color:#fff;text-decoration:none;opacity:.9}
+  .links a:hover{color:#a6b4ff}
+  .social{display:flex;align-items:center;gap:10px}
+  .btn-icon{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:#2b2f3a;transition:.2s}
+  .btn-icon:hover{transform:translateY(-1px);filter:brightness(1.1)}
+  .btn-icon svg{width:18px;height:18px;fill:#fff}
+
+  .wrap{max-width:1200px;margin:auto;padding:56px 20px}
+  .section-title{font-size:32px;font-weight:900;margin:0 0 24px}
+
+  /* HERO */
+  .hero{
+    position:relative;min-height:78vh;display:grid;place-items:center;text-align:center;overflow:hidden;
+    Background = gradients + dekor 
+    background:
+      radial-gradient(1200px 600px at 30% -10%, #3f38ff44 0%, transparent 70%),
+      radial-gradient(1200px 600px at 85% -10%, #b74cff33 0%, transparent 70%),
+      linear-gradient(180deg,#1a1a33 0%, #1c1f3b 35%, #181a2d 60%, #15161a 100%);
+  }
+  / TODO: Ako hoćeš konkretnu sliku u pozadini: odkomentariši i ubaci svoj fajl
+  .hero{ background: url('hugo.png') center/cover no-repeat, linear-gradient(180deg,#1a1a33 0%, #15161a 100%); }
+  */
+
+  .hero .clouds:before,
+  .hero .clouds:after{
+    content:"";position:absolute;left:50%;transform:translateX(-50%);
+    width:160vw;height:40vh;border-radius:50% 50% 0 0/100% 100% 0 0;background:#1b2037;filter:blur(2px);
+  }
+  .hero .clouds:before{bottom:-6vh;opacity:.8}
+  .hero .clouds:after{bottom:-10vh;opacity:.5}
+
+  
+  .welcome{color:#8dffbd;font-weight:800;letter-spacing:2.4px;font-size:13px;margin-bottom:10px;opacity:.95}
+  .title{font-weight:900;font-size:44px;line-height:1.1;letter-spacing:.3px;margin:6px 0 12px}
+  .title .alt{color:#f29cff}
+  .subtitle{max-width:920px;margin:auto;color:#dfe6f3;opacity:.95;font-size:19px}
+
+  .cta{margin-top:26px}
+  .btn{
+    appearance:none;border:0;border-radius:12px;padding:13px 22px;font-weight:900;letter-spacing:.3px;
+    background:linear-gradient(90deg,var(--accent),var(--primary));color:#0f0f10;cursor:pointer;box-shadow:0 10px 35px #5b68ff44;
+  }
+  .btn:hover{filter:brightness(1.06)}
+
+  /* CHEAPEST – shiny gradient animation */
+  .cheapest{
+    display:inline-block;
+    background:linear-gradient(90deg,#b7d6ff, #8bb7ff, #caa6ff, #b7d6ff);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:shine 4s linear infinite;
+  }
+  @keyframes shine{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}}
+
+  /* Rotating small word (FASTEST/PREMIUM…) */
+  .rotator{display:inline-block;min-width:10ch}
+  .rotator span{display:none;animation:fade 700ms ease}
+  .rotator span.active{display:inline}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  /* PRODUCTS + SIDEBAR */
+  .products{display:grid;grid-template-columns:260px 1fr;gap:24px}
+  .sidebar{background:var(--panel);border-radius:14px;padding:14px}
+  .side-title{margin:6px 10px 12px;font-size:14px;color:#cfd5e0;opacity:.9}
+  .side-list{display:flex;flex-direction:column;gap:10px}
+  .chip{display:flex;align-items:center;gap:10px;padding:12px;border-radius:12px;background:#1b1d23;border:1px solid #262a34;cursor:pointer;font-weight:700}
+  .chip.active{border-color:#6f6bf8;background:#21233a}
+  .chip .dot{width:8px;height:8px;border-radius:50%;background:#7a7ff7;box-shadow:0 0 0 3px #7a7ff722}
+
+  .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+  .card{background:#1a1b21;border:1px solid #272a36;border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+  .card .cover{height:110px;background:linear-gradient(45deg,#5b6bff,#a46bff)}
+  .card .body{padding:16px;display:flex;flex-direction:column;gap:8px}
+  .price{font-weight:900;color:#c9d3ff}
+  .buy{margin-top:auto;padding:10px 12px;border:0;border-radius:10px;background:linear-gradient(90deg,#7fd7ff,#7f83ff);font-weight:900;color:#0f0f10;cursor:pointer}
+  .buy:hover{filter:brightness(1.05)}
+
+
+  /* ABOUT */
+  .about{background:linear-gradient(180deg,#0f111a 0%, #0f1422 100%)}
+  .about .cols{display:grid;grid-template-columns:1.1fr .9fr;gap:26px}
+  .about .panel{background:#141824;border:1px solid #23283a;border-radius:18px;padding:20px}
+  .about .illus{height:320px;border-radius:18px;background:
+      radial-gradient(600px 260px at 20% 0,#7b86ff33 0,transparent 70%),
+      radial-gradient(600px 260px at 85% 0,#c57bff22 0,transparent 70%),
+      url(''); /* TODO: replace with your image if you want */
+      background-color:#101426; background-size:cover; background-position:center}
+
+  /* FAQ (accordion) */
+  .faq .item{background:#121420;border:1px solid #23263a;border-radius:14px;margin-bottom:12px;overflow:hidden}
+  .faq .q{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;cursor:pointer;font-weight:800}
+  .faq .a{max-height:0;overflow:hidden;transition:max-height .35s ease;padding:0 16px}
+  .faq .a.open{padding:12px 16px 16px}
+  .faq .q svg{transition:.25s}
+  .faq .q.active svg{transform:rotate(180deg)}
+
+  /* FOOTER */
+  .footer{border-top:1px solid #232631;background:#121316;color:#aab2c2}
+  .footer .wrap{padding:28px 20px}
+
+  /* MODALS */
+  .overlay{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;z-index:60}
+  .overlay.show{display:flex}
+  .modal{width:min(520px,92%);background:#141824;border:1px solid #262a36;border-radius:16px;padding:18px}
+  .divider{height:1px;background:#262a36;margin:14px 0}
+  .stepper{display:flex;align-items:center;gap:10px;justify-content:space-between;margin-bottom:14px}
+  .step{padding:6px 10px;border-radius:999px;background:#2a2e44;color:#cfd6ff;font-weight:800}
+  .step.on{background:#5e79ff;color:#0e1020}
+  input,textarea{width:100%;background:#0f1220;border:1px solid #23283a;border-radius:10px;padding:10px;color:#e8ecff}
+  input::placeholder{color:#96a0be}
+  .btn-wide{display:block;width:100%;padding:12px 14px;border:0;border-radius:12px;background:linear-gradient(90deg,#6dc8ff,#7c7dff);font-weight:900;color:#0e1020;cursor:pointer}
+  .btn-wide:hover{filter:brightness(1.05)}
+
+  /* Responsive */
+  @media (max-width:1100px){ .grid{grid-template-columns:repeat(3,1fr)} .products{grid-template-columns:1fr} .about .cols{grid-template-columns:1fr} }
+  @media (max-width:720px){ .grid{grid-template-columns:repeat(2,1fr)} .title{font-size:36px} }
+  @media (max-width:480px){ .grid{grid-template-columns:1fr} }
+</style>
 </head>
-<body class="bg-gray-900 text-white antialiased">
+<body>
 
-  <!-- Header / Hero -->
-  <header class="bg-purple-700 py-20 text-center">
-    <h1 class="text-5xl font-bold animate-fade-in">Cheapest Discord Nitro</h1>
-    <p class="mt-4 text-xl animate-fade-in delay-150">Providing high quality server boosts with automatic delivery</p>
-    <button class="mt-8 px-6 py-3 bg-yellow-400 text-gray-900 font-semibold rounded-lg hover:bg-yellow-500 transition-all animate-fade-in delay-300">
-      Check Our Products
-    </button>
-  </header>
+<!-- NAV -->
+<nav class="nav">
+  <div class="inner">
+    <div class="brand">
+      <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/lightning.svg" alt="" style="width:18px;height:18px;filter:invert(1)"/>
+      <span>FTX<span class="space-between">STORE</span></span>
+    </div>
+    <div class="links">
+      <a href="#">Home</a>
+      <a href="#about">About us</a>
+      <a href="#products">Products</a>
+      <a href="#faqs">FAQs</a>
+    </div>
+    <div class="social">
+      <a class="btn-icon" href="#" title="Telegram" aria-label="Telegram">
+        <svg viewBox="0 0 24 24"><path d="M9.036 15.08 8.87 19.5c.322 0 .463-.138.63-.304l3.02-2.9 4.983 3.64c.914.504 1.57.24 1.825-.846l3.309-15.5.001-.001c.293-1.364-.494-1.9-1.39-1.567L1.22 9.624C-.104 10.148-.084 10.93.992 11.265l5.356 1.672 12.451-7.855c.586-.356 1.122-.159.682.197"/></svg>
+      </a>
+      <a class="btn-icon" href="#" title="Discord" aria-label="Discord">
+        <svg viewBox="0 0 24 24"><path d="M20.222 4.39A19.791 19.791 0 0 0 15.769 3s-.43.797-.785 1.543a17.657 17.657 0 0 0-5.968 0A12.51 12.51 0 0 0 8.231 3S3.778 3.89 1.778 7.61c-2.063 3.695-2.5 8.239-2.5 8.239s2.113 3.693 7.636 3.87c0 0 .927-1.104 1.678-2.049-3.183-.933-4.393-2.89-4.393-2.89s.248.177.702.425c.563.298 1.127.514 1.646.677a17.981 17.981 0 0 0 6.257.313 18.275 18.275 0 0 0 3.605-.71c.86-.316 1.797-.77 2.786-1.387 0 0-1.269 2.018-4.62 2.932.778.967 1.692 2.03 1.692 2.03 5.522-.177 7.636-3.87 7.636-3.87s-.437-4.544-2.5-8.239ZM8.87 14.21c-.955 0-1.732-.878-1.732-1.96s.77-1.96 1.732-1.96c.962 0 1.739.878 1.739 1.96s-.777 1.96-1.739 1.96Zm6.26 0c-.955 0-1.732-.878-1.732-1.96s.77-1.96 1.732-1.96c.963 0 1.739.878 1.739 1.96s-.776 1.96-1.739 1.96Z"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
 
-  <!-- Why Choose Us -->
-  <section class="py-16 px-4">
-    <h2 class="text-4xl font-bold text-center mb-12">Why Choose Us?</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="bg-gray-800 p-6 rounded-lg hover:shadow-lg transition-shadow">
-        <h3 class="font-semibold text-xl mb-2">Instant Delivery</h3>
-        <p>Delivery within 30 seconds.</p>
+<!-- HERO -->
+<header class="hero">
+  <!-- Kiša -->
+  <canvas id="rain"></canvas>
+
+  <div class="wrap" style="text-align:center">
+    <div class="welcome">WELCOME TO FTX STORE</div>
+    <h1 class="title">
+      <span class="cheapest">CHEAPEST</span>
+      <span class="alt"> DISCORD SERVER BOOSTS</span>
+    </h1>
+    <p class="subtitle">
+      Providing High Quality Server Boosts with Automatic Delivery &amp; Discord Nitro at an affordable price!
+    </p>
+    <div class="cta">
+      <a href="#products" class="btn" id="ctaProducts">CHECK OUR PRODUCTS ⬇</a>
+    </div>
+  </div>
+
+  <!-- Logo -->
+  <div class="hero-logo">
+    <img src="images/ChatGPT Image 17. авг 2025. 04_25_40.png" alt="FTX Store Logo">
+  </div>
+</header>
+
+<style>
+/* Canvas full screen unutar hero-a */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+#rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* da ne smeta klikovima */
+}
+</style>
+
+<script>
+// Rain effect
+const canvas = document.getElementById("rain");
+const ctx = canvas.getContext("2d");
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = document.querySelector(".hero").offsetHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+class Drop {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.length = 15 + Math.random() * 20;
+    this.speed = 4 + Math.random() * 4;
+  }
+  fall() {
+    this.y += this.speed;
+    if (this.y > canvas.height) {
+      this.y = -this.length;
+      this.x = Math.random() * canvas.width;
+    }
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.strokeStyle = "rgba(173,216,230,0.7)";
+    ctx.lineWidth = 1.2;
+    ctx.moveTo(this.x, this.y);
+    ctx.lineTo(this.x, this.y + this.length);
+    ctx.stroke();
+  }
+}
+
+let drops = [];
+for (let i = 0; i < 120; i++) {
+  drops.push(new Drop());
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let d of drops) {
+    d.fall();
+    d.draw();
+  }
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+<section class="choose-us">
+  <style>
+    .choose-us {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .choose-us h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 40px;
+    }
+
+    .choose-us h2 span {
+      color: #6a5cff; /* ljubičasta boja naglaska */
+    }
+
+    .choose-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      justify-content: center;
+    }
+
+    .choose-card {
+      background: #111;
+      padding: 30px 20px;
+      border-radius: 12px;
+      text-align: center;
+      transition: 0.3s ease;
+    }
+
+    .choose-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    }
+
+    .choose-card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    /* boje ikonica */
+    .icon.red { color: #ff4b4b; }
+    .icon.blue { color: #4bb1ff; }
+    .icon.green { color: #4bff87; }
+    .icon.purple { color: #b84bff; }
+    .icon.yellow { color: #ffd84b; }
+    .icon.orange { color: #ff944b; }
+
+    .choose-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .choose-card p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+  </style>
+
+  <h2>WHY <span>CHOOSE US?</span></h2>
+
+  <div class="choose-container">
+
+    <div class="choose-card">
+      <i class="fa-solid fa-bolt icon red"></i>
+      <h3>INSTANT DELIVERY</h3>
+      <p>Boosts are delivered instantly with a unique instant-delivery system. Once your payment gets completed, you will receive your boosts within 30 seconds.</p>
+    </div>
+
+    <div class="choose-card">
+      <i class="fa-solid fa-gem icon blue"></i>
+      <h3>TOP QUALITY</h3>
+      <p>We guarantee you top quality in all of our products. We are committed to providing superior customer service, high standards, and the highest level of quality every time.</p>
+    </div>
+
+    <div class="choose-card">
+      <i class="fa-solid fa-credit-card icon green"></i>
+      <h3>MANY PAYMENT METHODS</h3>
+      <p>We accept PayPal, Cashapp, Apple Pay and dozens of cryptocurrencies for your purchases! We'll even give you a discounted coupon code from time to time.</p>
+    </div>
+
+    <div class="choose-card">
+      <i class="fa-solid fa-headset icon purple"></i>
+      <h3>DEDICATED SUPPORT</h3>
+      <p>We want to make your experience as easy, stress-free and enjoyable as possible. We have a dedicated team that will help you with any questions you might have 24/7, any time of the day.</p>
+    </div>
+
+    <div class="choose-card">
+      <i class="fa-solid fa-rocket icon yellow"></i>
+      <h3>UNMATCHED EXPERTISE</h3>
+      <p>We are a team of exceptionally skilled professionals who excel in development. Our expertise guarantees that your server will receive optimal results and an exceptional user experience.</p>
+    </div>
+
+    <div class="choose-card">
+      <i class="fa-solid fa-tags icon orange"></i>
+      <h3>COMPETITIVE PRICING</h3>
+      <p>We offer competitive pricing without compromising on quality. We strive to provide value for your investment.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" class="wrap">
+  <h2 class="section-title">Our Products</h2>
+  <div class="products">
+    <aside class="sidebar">
+      <div class="side-title">CATEGORIES</div>
+      <div class="side-list" id="cats">
+        <button class="chip active" data-cat="boosts"><span class="dot"></span> Discord Server Boosts</button>
+        <button class="chip" data-cat="nitro"><span class="dot"></span> Discord Nitro</button>
+        <button class="chip" data-cat="members"><span class="dot"></span> Discord Members</button>
+        <button class="chip" data-cat="subs"><span class="dot"></span> Subscriptions</button>
+        <button class="chip" data-cat="tools"><span class="dot"></span> Tools</button>
       </div>
-      <div class="bg-gray-800 p-6 rounded-lg hover:shadow-lg transition-shadow">
-        <h3 class="font-semibold text-xl mb-2">Top Quality</h3>
-        <p>Committed to providing superior service.</p>
+    </aside>
+
+    <div>
+      <!-- BOOSTS -->
+      <div class="grid cat boosts">
+        <article class="card">
+          <div class="cover"></div>
+          <div class="body">
+            <h3>6 Server Boosts (1 Month)</h3>
+            <div class="price">$4.99</div>
+            <button class="buy" data-product='{"name":"6 Server Boosts [1 Month]","price":"4.99"}'>BUY NOW</button>
+          </div>
+        </article>
+        <article class="card">
+          <div class="cover"></div>
+          <div class="body">
+            <h3>8 Server Boosts (1 Month)</h3>
+            <div class="price">$6.99</div>
+            <button class="buy" data-product='{"name":"8 Server Boosts [1 Month]","price":"6.99"}'>BUY NOW</button>
+          </div>
+        </article>
+        <article class="card">
+          <div class="cover"></div>
+          <div class="body">
+            <h3>14 Server Boosts (1 Month)</h3>
+            <div class="price">$9.99</div>
+            <button class="buy" data-product='{"name":"14 Server Boosts [1 Month]","price":"9.99"}'>BUY NOW</button>
+          </div>
+        </article>
+        <article class="card">
+          <div class="cover"></div>
+          <div class="body">
+            <h3>30 Server Boosts (1 Month)</h3>
+            <div class="price">$19.99</div>
+            <button class="buy" data-product='{"name":"30 Server Boosts [1 Month]","price":"19.99"}'>BUY NOW</button>
+          </div>
+        </article>
       </div>
-      <div class="bg-gray-800 p-6 rounded-lg hover:shadow-lg transition-shadow">
-        <h3 class="font-semibold text-xl mb-2">Many Payment Methods</h3>
-        <p>We accept PayPal, crypto, discounts from time to time.</p>
+
+      <!-- NITRO -->
+      <div class="grid cat nitro" style="display:none">
+        <article class="card">
+          <div class="cover" style="background:linear-gradient(45deg,#7cb0ff,#b88cff)"></div>
+          <div class="body">
+            <h3>Nitro Gift (1 Month)</h3>
+            <div class="price">$5.99</div>
+            <button class="buy" data-product='{"name":"Nitro Gift [1 Month]","price":"5.99"}'>BUY NOW</button>
+          </div>
+        </article>
+        <article class="card">
+          <div class="cover" style="background:linear-gradient(45deg,#7cb0ff,#b88cff)"></div>
+          <div class="body">
+            <h3>Nitro Gift (12 Months)</h3>
+            <div class="price">$79.99</div>
+            <button class="buy" data-product='{"name":"Nitro Gift [12 Months]","price":"79.99"}'>BUY NOW</button>
+          </div>
+        </article>
       </div>
-      <div class="bg-gray-800 p-6 rounded-lg hover:shadow-lg transition-shadow">
-        <h3 class="font-semibold text-xl mb-2">Dedicated Support</h3>
-        <p>Help 24/7 to make your experience stress-free.</p>
+
+      <!-- MEMBERS -->
+      <div class="grid cat members" style="display:none">
+        <article class="card">
+          <div class="cover" style="background:linear-gradient(45deg,#5cffa3,#5cd4ff)"></div>
+          <div class="body">
+            <h3>1,000 Members</h3>
+            <div class="price">$12.99</div>
+            <button class="buy" data-product='{"name":"1,000 Members","price":"12.99"}'>BUY NOW</button>
+          </div>
+        </article>
+        <article class="card">
+          <div class="cover" style="background:linear-gradient(45deg,#5cffa3,#5cd4ff)"></div>
+          <div class="body">
+            <h3>5,000 Members</h3>
+            <div class="price">$39.99</div>
+            <button class="buy" data-product='{"name":"5,000 Members","price":"39.99"}'>BUY NOW</button>
+          </div>
+        </article>
       </div>
-      <div class="bg-gray-800 p-6 rounded-lg hover:shadow-lg transition-shadow">
-        <h3 class="font-semibold text-xl mb-2">Unmatched Expertise</h3>
-        <p>Professionals guaranteeing optimal results.</p>
+
+      <!-- SUBSCRIPTIONS -->
+      <div class="grid cat subs" style="display:none">
+        <article class="card">
+          <div class="cover" style="background:linear-gradient(45deg,#ffc86e,#ff7ed4)"></div>
+          <div class="body">
+            <h3>Premium Plan</h3>
+            <div class="price">$9.99 / mo</div>
+            <button class="buy" data-product='{"name":"Premium Plan","price":"9.99 / mo"}'>BUY NOW</button>
+          </div>
+        </article>
       </div>
-      <div class="bg-gray-800 p-6 rounded-lg hover:shadow-lg transition-shadow">
-        <h3 class="font-semibold text-xl mb-2">Competitive Pricing</h3>
-        <p>Value for your investment.</p>
+
+      <!-- TOOLS -->
+      <div class="grid cat tools" style="display:none">
+        <article class="card">
+          <div class="cover" style="background:linear-gradient(45deg,#a3ff7c,#7c9bff)"></div>
+          <div class="body">
+            <h3>Invite Tool</h3>
+            <div class="price">$14.99</div>
+            <button class="buy" data-product='{"name":"Invite Tool","price":"14.99"}'>BUY NOW</button>
+
+            <script>
+paypal.Buttons({
+  createOrder: function(data, actions) {
+    return actions.order.create({
+      purchase_units: [{
+        description: document.getElementById("pmTitle").textContent,
+        amount: {
+          currency_code: "USD",
+          value: document.getElementById("pmPrice").textContent.replace("$","")
+        }
+      }]
+    });
+  },
+  onApprove: function(data, actions) {
+    return actions.order.capture().then(function(details) {
+      alert("Thanks " + details.payer.name.given_name + "! Your payment was successful.");
+    });
+  },
+  onError: function(err) {
+    console.error(err);
+    alert("Payment failed!");
+  }
+}).render("#paypal-button-container");
+</script>
+          </div>
+        </article>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Our Products -->
-  <section class="py-16 px-4 bg-gray-100 text-gray-900">
-    <h2 class="text-4xl font-bold text-center mb-12">Our Products</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Example card -->
-      <div class="bg-white p-6 rounded-lg shadow hover:shadow-2xl transition-shadow">
-        <h3 class="text-xl font-semibold mb-2">6 Server Boosts [1 Month]</h3>
-        <p class="mb-1">1 Month Warranty</p>
-        <p class="mb-1">Instant Delivery</p>
-        <p class="mb-1">Level 1 Perks</p>
-        <p class="text-2xl font-bold mt-4">$4.99</p>
-        <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">Buy Now</button>
+<!-- ABOUT -->
+<section id="about" class="about">
+  <div class="wrap">
+    <h2 class="section-title">About Us</h2>
+    <div class="cols">
+      <div class="panel">
+        <h3 style="margin-top:0">Why choose FTX Store?</h3>
+        <p style="opacity:.92;line-height:1.65">
+          We deliver high-quality Discord services with <b>automatic delivery</b>, quick support
+          and replacement warranty. Our goal is to be the most reliable and affordable shop for
+          Discord server owners and creators.
+        </p>
+        <ul style="margin:14px 0 0 18px;line-height:1.8;opacity:.95">
+          <li>Instant delivery for most products</li>
+          <li>Flexible pricing and custom requests</li>
+          <li>Secure checkout and invoices</li>
+          <li>Friendly support 24/7</li>
+        </ul>
       </div>
-      <!-- Kopiraj ovakav karticu i stavi više proizvoda -->
+      <div class="illus"><!-- TODO: replace with your image as background if želiš --></div>
     </div>
-  </section>
+  </div>
+</section>
 
+<!-- FAQ -->
+<section id="faqs" class="wrap">
+  <h2 class="section-title">FAQs</h2>
+  <div class="faq" id="faq">
+    <div class="item">
+      <div class="q">How fast is delivery?
+        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#cfe1ff" d="M12 15.5 5.5 9l1.4-1.4L12 12.7l5.1-5.1L18.5 9z"/></svg>
+      </div>
+      <div class="a">Most items are delivered automatically within a few minutes after payment. Large orders may take longer.</div>
+    </div>
+    <div class="item">
+      <div class="q">Is warranty included?
+        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#cfe1ff" d="M12 15.5 5.5 9l1.4-1.4L12 12.7l5.1-5.1L18.5 9z"/></svg>
+      </div>
+      <div class="a">Yes, we provide a replacement warranty for the period stated on each product card.</div>
+    </div>
+    <div class="item">
+      <div class="q">Which payment methods do you accept?
+        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#cfe1ff" d="M12 15.5 5.5 9l1.4-1.4L12 12.7l5.1-5.1L18.5 9z"/></svg>
+      </div>
+      <div class="a">We support common gateways. During checkout choose the payment method that suits you best.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">© 2025 FTX Store — All rights reserved.</div>
+</footer>
+
+<!-- MODALS -->
+<div class="overlay" id="productOverlay" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div style="display:flex;gap:12px">
+      <div style="width:72px;height:72px;border-radius:12px;background:#0f1220;border:1px solid #23283a;display:grid;place-items:center;color:#9ab2ff;font-weight:900">IMG</div>
+      <div>
+        <div id="pmTitle" style="font-weight:900;font-size:18px">Product Title</div>
+        <div id="pmPrice" style="color:#87a0ff;font-weight:900;margin-top:4px">$0.00</div>
+        <div style="display:flex;gap:6px;margin-top:6px;color:#ffc86e">★★★★★</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div style="background:#0f1220;border:1px solid #23283a;border-radius:10px;padding:10px;color:#9fb0d6;font-weight:800">Active</div>
+
+    <div style="margin-top:12px;font-weight:800;color:#cad6ff">Description:</div>
+    <div style="background:#0f1220;border:1px solid #23283a;border-radius:10px;padding:12px;margin-top:8px">
+      <div style="font-weight:800;margin-bottom:6px">Please make sure of the following:</div>
+      <ul style="margin:0 0 0 18px;line-height:1.8;opacity:.95">
+        <li>Community is turned off in server settings</li>
+        <li>Anti-raid is reduced to the lowest level</li>
+        <li>Apply to join (Application) is turned off in Server Settings › Access</li>
+      </ul>
+    </div>
+
+    <button class="btn-wide" id="selectPaymentBtn" style="margin-top:14px">Select Payment Method →</button>
+    <button class="btn-wide" id="closeProduct" style="margin-top:10px;background:#2a314a;color:#e9edff">Close</button>
+
+<div class="overlay" id="checkoutOverlay" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div style="font-size:20px;font-weight:900;margin-bottom:6px">Checkout</div>
+
+    <div class="stepper">
+      <span class="step on">CART</span>
+      <span class="step on">PAYMENT</span>
+      <span class="step">INVOICE</span>
+    </div>
+
+    <div style="font-weight:800;margin:8px 0 6px">Delivery Email</div>
+    <input type="email" placeholder="Enter your email address" id="emailInput"/>
+
+    <div style="opacity:.8;font-size:13px;margin:6px 0 10px">You will receive the product and invoice on this email.</div>
+
+    <div style="font-weight:800;margin:8px 0 6px">Referral Code</div>
+    <input type="text" placeholder="Enter referral code (optional)" id="refInput"/>
+
+    <button class="btn-wide" style="margin-top:16px">Pay →</button>
+    <div id="paypal-button-container"></div>
+    <button class="btn-wide" id="closeCheckout" style="margin-top:10px;background:#2a314a;color:#e9edff">Close</button>
+  </div>
+</div>
+
+<!-- SDK: stavi ispod modala -->
+<script src="https://www.paypal.com/sdk/js?client-id=AZZU5WwPQ1HKRLvNZOCInPz2jXaSdO_yVFVK0JPO7Mxe90ZSTfB7fzbi-JHaCS-h1qEaLJ89CA-gfoP8&currency=USD&components=buttons,funding-eligibility"></script>
+
+<script>
+  // renderuje PayPal dugmad
+  function renderPayPal(price) {
+    document.getElementById('paypal-button-container').innerHTML = "";
+    paypal.Buttons({
+      style: {
+        layout: 'vertical',
+        color: 'blue',
+        shape: 'rect',
+        label: 'paypal'
+      },
+      fundingSource: paypal.FUNDING.PAYPAL, // PayPal
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: { value: price }
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert("Payment successful! Thanks " + details.payer.name.given_name);
+          document.getElementById('checkoutOverlay').classList.remove('show');
+        });
+      }
+    }).render('#paypal-button-container');
+
+    // kartice posebno (Visa, Master, Amex…)
+    paypal.Buttons({
+      fundingSource: paypal.FUNDING.CARD, 
+      style: {
+        layout: 'vertical',
+        color: 'silver',
+        shape: 'rect',
+        label: 'pay'
+      },
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: { value: price }
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert("Card payment successful! Thanks " + details.payer.name.given_name);
+          document.getElementById('checkoutOverlay').classList.remove('show');
+        });
+      }
+    }).render('#paypal-button-container');
+  }
+
+  // kad klikneš "BUY NOW"
+  document.querySelectorAll('.buy').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const data = JSON.parse(btn.dataset.product);
+      renderPayPal(data.price); // ubaci cenu proizvoda
+      document.getElementById('checkoutOverlay').classList.add('show');
+    });
+  });
+</script>
+</div>
+
+
+<script>
+  // rotating words (if želiš umesto CHEAPEST)
+  const rotator = document.createElement('span');
+  rotator.className='rotator';
+  rotator.innerHTML='<span class="active">CHEAPEST</span><span>FASTEST</span><span>PREMIUM</span>';
+  // (Ako poželiš umesto .cheapest, možeš ubaciti u naslov)
+
+  // sidebar switch
+  const chips=document.querySelectorAll('.chip');
+  const cats=document.querySelectorAll('.cat');
+  chips.forEach(ch=>{
+    ch.addEventListener('click', ()=>{
+      chips.forEach(c=>c.classList.remove('active'));
+      ch.classList.add('active');
+      const key=ch.dataset.cat;
+      cats.forEach(g=>g.style.display = g.classList.contains(key) ? '' : 'none');
+      // scroll to top of grid on mobile
+      document.querySelector('#products').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+
+  // CTA scroll fix
+  document.getElementById('ctaProducts').addEventListener('click', e=>{
+    // default anchor smooth works, but ensure correct offset on sticky nav
+    // (here we rely on browser smooth)
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq .item').forEach(item=>{
+    const q=item.querySelector('.q');
+    const a=item.querySelector('.a');
+    q.addEventListener('click', ()=>{
+      const open = a.style.maxHeight && a.style.maxHeight!=='0px';
+      document.querySelectorAll('.faq .a').forEach(x=>{ x.style.maxHeight='0'; x.classList.remove('open'); });
+      document.querySelectorAll('.faq .q').forEach(x=>x.classList.remove('active'));
+      if(!open){
+        a.style.maxHeight = a.scrollHeight + 'px';
+        a.classList.add('open');
+        q.classList.add('active');
+      }
+    });
+  });
+  // open first by default
+  const firstA=document.querySelector('.faq .a'); 
+  if(firstA){ firstA.style.maxHeight = firstA.scrollHeight+'px'; firstA.classList.add('open'); firstA.previousElementSibling.classList.add('active'); }
+
+  // Modals: product -> checkout
+  const productOverlay=document.getElementById('productOverlay');
+  const checkoutOverlay=document.getElementById('checkoutOverlay');
+  const pmTitle=document.getElementById('pmTitle');
+  const pmPrice=document.getElementById('pmPrice');
+
+  document.querySelectorAll('.buy').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const data = JSON.parse(btn.dataset.product);
+      pmTitle.textContent = data.name;
+      pmPrice.textContent = '$' + data.price;
+      productOverlay.classList.add('show');
+    });
+  });
+
+  document.getElementById('closeProduct').addEventListener('click', ()=> productOverlay.classList.remove('show'));
+  document.getElementById('selectPaymentBtn').addEventListener('click', ()=>{
+    productOverlay.classList.remove('show');
+    checkoutOverlay.classList.add('show');
+  });
+  document.getElementById('closeCheckout').addEventListener('click', ()=> checkoutOverlay.classList.remove('show'));
+
+  // close modals by clicking outside
+  [productOverlay, checkoutOverlay].forEach(ov=>{
+    ov.addEventListener('click', e=>{
+      if(e.target === ov) ov.classList.remove('show');
+    });
+  });
+</script>
 </body>
 </html>
+
