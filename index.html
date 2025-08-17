@@ -366,119 +366,80 @@ animate();
   </div>
 </section>
 
-<!-- PRODUCTS -->
-<section id="products" class="wrap">
-  <h2 class="section-title">Our Products</h2>
-  <div class="products">
-    <aside class="sidebar">
-      <div class="side-title">CATEGORIES</div>
-      <div class="side-list" id="cats">
-        <button class="chip active" data-cat="boosts"><span class="dot"></span> Discord Server Boosts</button>
-        <button class="chip" data-cat="nitro"><span class="dot"></span> Discord Nitro</button>
-        <button class="chip" data-cat="members"><span class="dot"></span> Discord Members</button>
-        <button class="chip" data-cat="subs"><span class="dot"></span> Subscriptions</button>
-        <button class="chip" data-cat="tools"><span class="dot"></span> Tools</button>
-      </div>
-    </aside>
+<!-- PRODUCTS sekcija -->
+<section id="products" class="min-h-screen bg-neutral-950 text-white px-8 py-12">
+  <h2 class="text-3xl font-bold mb-8">
+    OUR <span class="text-blue-400">PRODUCTS</span>
+  </h2>
 
-    <div>
-      <!-- BOOSTS -->
-      <div class="grid cat boosts">
-        <article class="card">
-          <div class="cover"></div>
-          <div class="body">
-            <h3>6 Server Boosts (1 Month)</h3>
-            <div class="price">$4.99</div>
-            <button class="buy" data-product='{"name":"6 Server Boosts [1 Month]","price":"4.99"}'>BUY NOW</button>
-          </div>
-        </article>
-        <article class="card">
-          <div class="cover"></div>
-          <div class="body">
-            <h3>8 Server Boosts (1 Month)</h3>
-            <div class="price">$6.99</div>
-            <button class="buy" data-product='{"name":"8 Server Boosts [1 Month]","price":"6.99"}'>BUY NOW</button>
-          </div>
-        </article>
-        <article class="card">
-          <div class="cover"></div>
-          <div class="body">
-            <h3>14 Server Boosts (1 Month)</h3>
-            <div class="price">$9.99</div>
-            <button class="buy" data-product='{"name":"14 Server Boosts [1 Month]","price":"9.99"}'>BUY NOW</button>
-          </div>
-        </article>
-        <article class="card">
-          <div class="cover"></div>
-          <div class="body">
-            <h3>30 Server Boosts (1 Month)</h3>
-            <div class="price">$19.99</div>
-            <button class="buy" data-product='{"name":"30 Server Boosts [1 Month]","price":"19.99"}'>BUY NOW</button>
-          </div>
-        </article>
+  <div class="flex gap-10">
+    <!-- Sidebar -->
+    <div class="flex flex-col w-72 space-y-4">
+      <button onclick="showSection('video')" 
+              class="flex items-center px-6 py-4 rounded-lg bg-neutral-800 text-white font-semibold hover:bg-neutral-700 transition">
+        <span id="dot-video" class="w-3 h-3 mr-3 rounded-full border-2 border-white bg-blue-500"></span>
+        VIDEO EDITING
+      </button>
+
+      <button onclick="showSection('picture')" 
+              class="flex items-center px-6 py-4 rounded-lg bg-neutral-900 text-white font-semibold hover:bg-neutral-700 transition">
+        <span id="dot-picture" class="w-3 h-3 mr-3 rounded-full border-2 border-white"></span>
+        PICTURE EDITING
+      </button>
+
+      <button onclick="showSection('bot')" 
+              class="flex items-center px-6 py-4 rounded-lg bg-neutral-900 text-white font-semibold hover:bg-neutral-700 transition">
+        <span id="dot-bot" class="w-3 h-3 mr-3 rounded-full border-2 border-white"></span>
+        DISCORD CUSTOM BOT
+      </button>
+
+      <button onclick="showSection('serverdev')" 
+              class="flex items-center px-6 py-4 rounded-lg bg-neutral-900 text-white font-semibold hover:bg-neutral-700 transition">
+        <span id="dot-serverdev" class="w-3 h-3 mr-3 rounded-full border-2 border-white"></span>
+        DISCORD SERVER DEVELOPMENT
+      </button>
+
+      <button onclick="showSection('shorts')" 
+              class="flex items-center px-6 py-4 rounded-lg bg-neutral-900 text-white font-semibold hover:bg-neutral-700 transition">
+        <span id="dot-shorts" class="w-3 h-3 mr-3 rounded-full border-2 border-white"></span>
+        YOUTUBE SHORTS
+      </button>
+    </div>
+
+    <!-- Content -->
+    <div class="flex-1">
+      <div id="video" class="hidden">
+        <h3 class="text-2xl font-bold mb-4">🎬 Video Editing</h3>
+        <p class="mb-2">Professional editing for YouTube, TikTok, Instagram and more.</p>
+        <p class="text-blue-400 font-bold">Price: $20 - $100</p>
       </div>
 
-      <!-- NITRO -->
-      <div class="grid cat nitro" style="display:none">
-        <article class="card">
-          <div class="cover" style="background:linear-gradient(45deg,#7cb0ff,#b88cff)"></div>
-          <div class="body">
-            <h3>Nitro Gift (1 Month)</h3>
-            <div class="price">$5.99</div>
-            <button class="buy" data-product='{"name":"Nitro Gift [1 Month]","price":"5.99"}'>BUY NOW</button>
-          </div>
-        </article>
-        <article class="card">
-          <div class="cover" style="background:linear-gradient(45deg,#7cb0ff,#b88cff)"></div>
-          <div class="body">
-            <h3>Nitro Gift (12 Months)</h3>
-            <div class="price">$79.99</div>
-            <button class="buy" data-product='{"name":"Nitro Gift [12 Months]","price":"79.99"}'>BUY NOW</button>
-          </div>
-        </article>
+      <div id="picture" class="hidden">
+        <h3 class="text-2xl font-bold mb-4">🖼️ Picture Editing</h3>
+        <p class="mb-2">High quality Photoshop & graphic design services.</p>
+        <p class="text-blue-400 font-bold">Price: $10 - $50</p>
       </div>
 
-      <!-- MEMBERS -->
-      <div class="grid cat members" style="display:none">
-        <article class="card">
-          <div class="cover" style="background:linear-gradient(45deg,#5cffa3,#5cd4ff)"></div>
-          <div class="body">
-            <h3>1,000 Members</h3>
-            <div class="price">$12.99</div>
-            <button class="buy" data-product='{"name":"1,000 Members","price":"12.99"}'>BUY NOW</button>
-          </div>
-        </article>
-        <article class="card">
-          <div class="cover" style="background:linear-gradient(45deg,#5cffa3,#5cd4ff)"></div>
-          <div class="body">
-            <h3>5,000 Members</h3>
-            <div class="price">$39.99</div>
-            <button class="buy" data-product='{"name":"5,000 Members","price":"39.99"}'>BUY NOW</button>
-          </div>
-        </article>
+      <div id="bot" class="hidden">
+        <h3 class="text-2xl font-bold mb-4">🤖 Discord Custom Bot</h3>
+        <p class="mb-2">Custom coded Discord bots with commands, moderation & more.</p>
+        <p class="text-blue-400 font-bold">Price: $50 - $200</p>
       </div>
 
-      <!-- SUBSCRIPTIONS -->
-      <div class="grid cat subs" style="display:none">
-        <article class="card">
-          <div class="cover" style="background:linear-gradient(45deg,#ffc86e,#ff7ed4)"></div>
-          <div class="body">
-            <h3>Premium Plan</h3>
-            <div class="price">$9.99 / mo</div>
-            <button class="buy" data-product='{"name":"Premium Plan","price":"9.99 / mo"}'>BUY NOW</button>
-          </div>
-        </article>
+      <div id="serverdev" class="hidden">
+        <h3 class="text-2xl font-bold mb-4">🛠️ Discord Server Development</h3>
+        <p class="mb-2">Complete setup with roles, channels, permissions & automations.</p>
+        <p class="text-blue-400 font-bold">Price: $30 - $150</p>
       </div>
 
-      <!-- TOOLS -->
-      <div class="grid cat tools" style="display:none">
-        <article class="card">
-          <div class="cover" style="background:linear-gradient(45deg,#a3ff7c,#7c9bff)"></div>
-          <div class="body">
-            <h3>Invite Tool</h3>
-            <div class="price">$14.99</div>
-            <button class="buy" data-product='{"name":"Invite Tool","price":"14.99"}'>BUY NOW</button>
-
+      <div id="shorts" class="hidden">
+        <h3 class="text-2xl font-bold mb-4">📱 YouTube Shorts</h3>
+        <p class="mb-2">Engaging shorts to grow your YouTube channel fast.</p>
+        <p class="text-blue-400 font-bold">Price: $15 - $50</p>
+      </div>
+    </div>
+  </div>
+</section>
             <script>
 paypal.Buttons({
   createOrder: function(data, actions) {
@@ -758,6 +719,25 @@ paypal.Buttons({
       if(e.target === ov) ov.classList.remove('show');
     });
   });
+<!-- Script -->
+<script>
+  function showSection(id) {
+    document.querySelectorAll("#products .flex-1 > div").forEach(div => {
+      div.classList.add("hidden");
+    });
+    document.getElementById(id).classList.remove("hidden");
+
+    document.querySelectorAll("[id^='dot-']").forEach(dot => {
+      dot.classList.remove("bg-blue-500");
+    });
+    const activeDot = document.getElementById("dot-" + id);
+    if (activeDot) activeDot.classList.add("bg-blue-500");
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    showSection("video");
+  });
 </script>
+
 </body>
 </html>
