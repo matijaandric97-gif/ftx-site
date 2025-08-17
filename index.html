@@ -2,219 +2,547 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Boosting Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FTX Store — Boosts & Services</title>
+  <meta name="description" content="Boosts, custom bots, editing i još mnogo toga. Brza isporuka i pristupačne cene." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <!-- Navbar -->
-  <header class="navbar">
-    <div class="logo">Boosts.gg</div>
-    <nav>
-      <ul>
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#clients">Clients</a></li>
-      </ul>
-    </nav>
+  <!-- ========= NAVBAR ========= -->
+  <header class="nav-wrap glass">
+    <div class="container nav">
+      <a href="#" class="brand">
+        <span class="brand-dot"></span>
+        FTX<span class="accent">STORE</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About us</a>
+        <a href="#products">Products</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQs</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn btn-ghost" href="https://t.me/" target="_blank" rel="noreferrer">Telegram</a>
+        <a class="btn" href="https://discord.com/" target="_blank" rel="noreferrer">Discord</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- mobile drawer -->
+    <div class="drawer" id="drawer">
+      <a href="#home" class="drawer-link">Home</a>
+      <a href="#about" class="drawer-link">About us</a>
+      <a href="#products" class="drawer-link">Products</a>
+      <a href="#pricing" class="drawer-link">Pricing</a>
+      <a href="#faq" class="drawer-link">FAQs</a>
+      <div class="drawer-cta">
+        <a class="btn btn-ghost" href="https://t.me/" target="_blank" rel="noreferrer">Telegram</a>
+        <a class="btn" href="https://discord.com/" target="_blank" rel="noreferrer">Discord</a>
+      </div>
+    </div>
   </header>
 
-  <!-- Hero -->
-  <section id="hero" class="hero">
-    <h1>Welcome to <span>Boosts.gg</span></h1>
-    <p>Professional and affordable boosting services, tailored just for you.</p>
-    <a href="#products" class="btn">View Products</a>
-  </section>
+  <!-- ========= BACKGROUND ART ========= -->
+  <div class="bg">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <canvas id="spark"></canvas>
+  </div>
 
-  <!-- About -->
-  <section id="about" class="about">
-    <h2>About Us</h2>
-    <p>
-      We are a team of professionals providing boosting services in various fields.  
-      Our mission is to deliver high quality results with maximum customer satisfaction.
-    </p>
-  </section>
+  <!-- ========= HERO ========= -->
+  <section id="home" class="hero section">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="kicker">WELCOME TO FTX STORE</p>
+        <h1 class="title-xl">
+          <span class="gradient">CHEAPEST</span> DISCORD SERVER BOOSTS & SERVICES
+        </h1>
+        <p class="subtitle">
+          Brza isporuka, automatski sistemi i podrška 24/7 — po ceni koja prija.
+        </p>
 
-  <!-- Products -->
-  <section id="products" class="products">
-    <div class="sidebar">
-      <button onclick="showSection('video')">Video Editing</button>
-      <button onclick="showSection('picture')">Picture Editing</button>
-      <button onclick="showSection('bot')">Discord Custom Bot</button>
-      <button onclick="showSection('serverdev')">Discord Server Development</button>
-      <button onclick="showSection('shorts')">Shorts Editing</button>
-      <button onclick="showSection('other')">Other</button>
-    </div>
-    <div class="content">
-      <!-- Video Editing -->
-      <div id="video" class="product-section">
-        <h3>Video Editing</h3>
-        <div class="card-grid">
-          <div class="card">
-            <h4>Basic Video Edit</h4>
-            <p>Simple cuts, transitions and color correction.</p>
-            <button class="btn">Buy Now</button>
-          </div>
-          <div class="card">
-            <h4>Advanced Video Edit</h4>
-            <p>Advanced effects, motion graphics and audio sync.</p>
-            <button class="btn">Buy Now</button>
-          </div>
-          <div class="card">
-            <h4>Premium Video Edit</h4>
-            <p>Full cinematic editing with professional VFX.</p>
-            <button class="btn">Buy Now</button>
-          </div>
+        <div class="hero-actions">
+          <a href="#products" class="btn btn-lg">CHECK OUR PRODUCTS ↓</a>
+          <a href="#about" class="btn btn-ghost btn-lg">Why choose us?</a>
         </div>
+
+        <ul class="hero-points">
+          <li><span class="dot"></span> Instant delivery na većini proizvoda</li>
+          <li><span class="dot"></span> Sigurne i proverene metode</li>
+          <li><span class="dot"></span> Refund & Support policy</li>
+        </ul>
       </div>
 
-      <!-- Picture Editing -->
-      <div id="picture" class="product-section hidden">
-        <h3>Picture Editing</h3>
-        <div class="card-grid">
-          <div class="card">
-            <h4>Basic Picture Edit</h4>
-            <p>Brightness, contrast, and basic retouch.</p>
-            <button class="btn">Buy Now</button>
-          </div>
-          <div class="card">
-            <h4>Advanced Picture Edit</h4>
-            <p>Background removal, manipulation, and effects.</p>
-            <button class="btn">Buy Now</button>
-          </div>
-          <div class="card">
-            <h4>Premium Picture Edit</h4>
-            <p>Full design work, posters, banners, covers.</p>
-            <button class="btn">Buy Now</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Bot -->
-      <div id="bot" class="product-section hidden">
-        <h3>Discord Custom Bot</h3>
-        <div class="card-grid">
-          <div class="card">
-            <h4>Basic Bot</h4>
-            <p>Simple moderation and utility commands.</p>
-            <button class="btn">Buy Now</button>
-          </div>
-          <div class="card">
-            <h4>Advanced Bot</h4>
-            <p>Music system, logging, role management.</p>
-            <button class="btn">Buy Now</button>
-          </div>
-          <div class="card">
-            <h4>Premium Bot</h4>
-            <p>Fully custom coded with advanced features.</p>
-            <button class="btn">Buy Now</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Server Dev -->
-      <div id="serverdev" class="product-section hidden">
-        <h3>Discord Server Development</h3>
-        <div class="card-grid">
-          <div class="card">
-            <h4>Basic Setup</h4>
-            <p>Roles, channels and permissions set up.</p>
-            <button class="btn">Buy Now</button>
-          </div>
-          <div class="card">
-            <h4>Advanced Setup</h4>
-            <p>Custom categories, auto-mod, custom rules.</p>
-            <button class="btn">Buy Now</button>
-          </div>
-          <div class="card">
-            <h4>Premium Setup</h4>
-            <p>Fully branded and automated server setup.</p>
-            <button class="btn">Buy Now</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Shorts -->
-      <div id="shorts" class="product-section hidden">
-        <h3>Shorts Editing</h3>
-        <div class="card-grid">
-          <div class="card">
-            <h4>Basic Short Edit</h4>
-            <p>Quick cut and subtitle sync.</p>
-            <button class="btn">Buy Now</button>
-          </div>
-          <div class="card">
-            <h4>Advanced Short Edit</h4>
-            <p>Captions, zooms, and transitions.</p>
-            <button class="btn">Buy Now</button>
-          </div>
-          <div class="card">
-            <h4>Premium Short Edit</h4>
-            <p>Full TikTok/YouTube Shorts optimized video.</p>
-            <button class="btn">Buy Now</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Other -->
-      <div id="other" class="product-section hidden">
-        <h3>Other Services</h3>
-        <div class="card-grid">
-          <div class="card"><h4>Coaching</h4><p>One-on-one coaching sessions.</p><button class="btn">Buy Now</button></div>
-          <div class="card"><h4>Branding</h4><p>Logo, banner and full branding kit.</p><button class="btn">Buy Now</button></div>
-          <div class="card"><h4>Web Design</h4><p>Landing pages and personal websites.</p><button class="btn">Buy Now</button></div>
-          <div class="card"><h4>Social Media Setup</h4><p>Optimized profiles and graphics.</p><button class="btn">Buy Now</button></div>
-          <div class="card"><h4>Consulting</h4><p>Business and community consulting.</p><button class="btn">Buy Now</button></div>
+      <div class="hero-art">
+        <div class="card-glow">
+          <div class="logo-ring"></div>
+          <div class="logo-circle"></div>
+          <div class="rain"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section id="faq" class="faq">
-    <h2>FAQ</h2>
-    <div class="faq-item">
-      <h4>How can I order?</h4>
-      <p>You can select any product and click "Buy Now".</p>
-    </div>
-    <div class="faq-item">
-      <h4>What payment methods do you accept?</h4>
-      <p>We accept PayPal, crypto, and credit cards.</p>
-    </div>
-    <div class="faq-item">
-      <h4>Is it safe?</h4>
-      <p>Yes! We guarantee confidentiality and safety of your data.</p>
+  <!-- ========= FEATURES / WHY US ========= -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="title-lg">Why <span class="accent">Choose</span> Us?</h2>
+        <p class="muted">Kombinujemo kvalitet, brzinu i pristupačnu cenu — bez kompromisa.</p>
+      </div>
+
+      <div class="grid-3 features">
+        <article class="feature-card">
+          <div class="icon-badge">⚡</div>
+          <h3>Ultra Fast Delivery</h3>
+          <p>Automatizovane narudžbine i optimizovan fulfillment da vaša usluga stigne što pre.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="icon-badge">🛡️</div>
+          <h3>Trusted & Safe</h3>
+          <p>Sigurne metode, provereni provajderi i dodatne interne validacije porudžbina.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="icon-badge">💬</div>
+          <h3>Support 24/7</h3>
+          <p>Naš tim odgovara brzo — tu smo za sva pitanja, izmene i pomoć oko kupovine.</p>
+        </article>
+      </div>
     </div>
   </section>
 
-  <!-- Clients -->
-  <section id="clients" class="clients">
-    <h2>What our clients say</h2>
-    <div class="card-grid">
-      <div class="card"><p>"Amazing service, super fast delivery!"</p></div>
-      <div class="card"><p>"Very professional, highly recommend."</p></div>
-      <div class="card"><p>"I love the results, will buy again."</p></div>
-      <div class="card"><p>"Top-notch work and friendly support."</p></div>
+  <!-- ========= PRODUCTS ========= -->
+  <section id="products" class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="title-lg">Our <span class="accent">Products</span></h2>
+        <p class="muted">Izaberi kategoriju ili skroluj — svaka kartica ima prelep hover i glatke animacije.</p>
+      </div>
+
+      <div class="products-wrap">
+        <!-- Sidebar -->
+        <aside class="sidebar glass">
+          <h4 class="sidebar-title">Categories</h4>
+          <button class="side-link active" data-cat="serverdev"><span class="bullet"></span>Discord Server Development</button>
+          <button class="side-link" data-cat="bot"><span class="bullet"></span>Discord Custom Bot</button>
+          <button class="side-link" data-cat="video"><span class="bullet"></span>Video Editing</button>
+          <button class="side-link" data-cat="picture"><span class="bullet"></span>Picture Editing</button>
+          <button class="side-link" data-cat="other"><span class="bullet"></span>Other</button>
+
+          <div class="side-tip">
+            Tip: klikni kategoriju da filtriraš proizvode. Ponovo klikni za prikaz svih.
+          </div>
+        </aside>
+
+        <!-- Grid -->
+        <div class="grid-3 product-grid" id="productGrid">
+          <!-- serverdev (3) -->
+          <article class="card product serverdev">
+            <div class="card-top">
+              <div class="chip">Development</div>
+              <div class="glass-sheen"></div>
+            </div>
+            <h3>Discord Server Development</h3>
+            <p class="muted">Kompletan setup: role, kanali, perm, onboarding.</p>
+            <div class="price">$19.99</div>
+            <button class="btn buy" data-name="Discord Server Development" data-price="19.99">Buy Now</button>
+          </article>
+
+          <article class="card product serverdev">
+            <div class="card-top"><div class="chip">Design</div><div class="glass-sheen"></div></div>
+            <h3>Advanced Server Setup</h3>
+            <p class="muted">Napredna struktura, automacije i premium estetika.</p>
+            <div class="price">$29.99</div>
+            <button class="btn buy" data-name="Advanced Server Setup" data-price="29.99">Buy Now</button>
+          </article>
+
+          <article class="card product serverdev">
+            <div class="card-top"><div class="chip">Premium</div><div class="glass-sheen"></div></div>
+            <h3>Premium Server Design</h3>
+            <p class="muted">Full custom tema, vizuali, landing kanali, reakcije.</p>
+            <div class="price">$49.99</div>
+            <button class="btn buy" data-name="Premium Server Design" data-price="49.99">Buy Now</button>
+          </article>
+
+          <!-- bot (3) -->
+          <article class="card product bot">
+            <div class="card-top"><div class="chip">Bot</div><div class="glass-sheen"></div></div>
+            <h3>Discord Custom Bot</h3>
+            <p class="muted">Specifična logika po meri servera i community-ja.</p>
+            <div class="price">$39.99</div>
+            <button class="btn buy" data-name="Discord Custom Bot" data-price="39.99">Buy Now</button>
+          </article>
+
+          <article class="card product bot">
+            <div class="card-top"><div class="chip">Moderation</div><div class="glass-sheen"></div></div>
+            <h3>Moderation Bot</h3>
+            <p class="muted">Automatska zaštita, mute/kick/ban, logs i filteri.</p>
+            <div class="price">$24.99</div>
+            <button class="btn buy" data-name="Moderation Bot" data-price="24.99">Buy Now</button>
+          </article>
+
+          <article class="card product bot">
+            <div class="card-top"><div class="chip">Music</div><div class="glass-sheen"></div></div>
+            <h3>Music Bot</h3>
+            <p class="muted">Stabilna muzika sa queue, loop i playlist podrškom.</p>
+            <div class="price">$14.99</div>
+            <button class="btn buy" data-name="Music Bot" data-price="14.99">Buy Now</button>
+          </article>
+
+          <!-- video (3) -->
+          <article class="card product video">
+            <div class="card-top"><div class="chip">Video</div><div class="glass-sheen"></div></div>
+            <h3>Video Editing</h3>
+            <p class="muted">Cut, color, tekst i zvuk — brzo i čisto.</p>
+            <div class="price">$9.99</div>
+            <button class="btn buy" data-name="Video Editing" data-price="9.99">Buy Now</button>
+          </article>
+
+          <article class="card product video">
+            <div class="card-top"><div class="chip">Advanced</div><div class="glass-sheen"></div></div>
+            <h3>Advanced Video Edit</h3>
+            <p class="muted">Motion grafika, napredne tranzicije, sound design.</p>
+            <div class="price">$19.99</div>
+            <button class="btn buy" data-name="Advanced Video Edit" data-price="19.99">Buy Now</button>
+          </article>
+
+          <article class="card product video">
+            <div class="card-top"><div class="chip">Cinematic</div><div class="glass-sheen"></div></div>
+            <h3>Pro Cinematic Edit</h3>
+            <p class="muted">Filmski look, LUT-ovi, VFX i ritam montiranja.</p>
+            <div class="price">$29.99</div>
+            <button class="btn buy" data-name="Pro Cinematic Edit" data-price="29.99">Buy Now</button>
+          </article>
+
+          <!-- picture (3) -->
+          <article class="card product picture">
+            <div class="card-top"><div class="chip">Design</div><div class="glass-sheen"></div></div>
+            <h3>Picture Editing</h3>
+            <p class="muted">Retuš, korekcije boja, uklanjanje pozadine.</p>
+            <div class="price">$4.99</div>
+            <button class="btn buy" data-name="Picture Editing" data-price="4.99">Buy Now</button>
+          </article>
+
+          <article class="card product picture">
+            <div class="card-top"><div class="chip">Logo</div><div class="glass-sheen"></div></div>
+            <h3>Logo Design</h3>
+            <p class="muted">Jasan brand identitet, više varijanti i export.</p>
+            <div class="price">$14.99</div>
+            <button class="btn buy" data-name="Logo Design" data-price="14.99">Buy Now</button>
+          </article>
+
+          <article class="card product picture">
+            <div class="card-top"><div class="chip">Banner</div><div class="glass-sheen"></div></div>
+            <h3>Banner Design</h3>
+            <p class="muted">Discord/YT/Twitch bannere, optimizovane dimenzije.</p>
+            <div class="price">$19.99</div>
+            <button class="btn buy" data-name="Banner Design" data-price="19.99">Buy Now</button>
+          </article>
+
+          <!-- other (5) -->
+          <article class="card product other">
+            <div class="card-top"><div class="chip">Tools</div><div class="glass-sheen"></div></div>
+            <h3>Invite Tracker Bot</h3>
+            <p class="muted">Precizno praćenje pozivnica i statistika.</p>
+            <div class="price">$5.99</div>
+            <button class="btn buy" data-name="Invite Tracker Bot" data-price="5.99">Buy Now</button>
+          </article>
+
+          <article class="card product other">
+            <div class="card-top"><div class="chip">Tools</div><div class="glass-sheen"></div></div>
+            <h3>Giveaway Manager</h3>
+            <p class="muted">Automatski giveawaji sa validacijama i reroll-om.</p>
+            <div class="price">$6.99</div>
+            <button class="btn buy" data-name="Giveaway Manager" data-price="6.99">Buy Now</button>
+          </article>
+
+          <article class="card product other">
+            <div class="card-top"><div class="chip">Subs</div><div class="glass-sheen"></div></div>
+            <h3>Monthly Maintenance</h3>
+            <p class="muted">Ažuriranja, backup, optimizacije & support.</p>
+            <div class="price">$7.99</div>
+            <button class="btn buy" data-name="Monthly Maintenance" data-price="7.99">Buy Now</button>
+          </article>
+
+          <article class="card product other">
+            <div class="card-top"><div class="chip">Tools</div><div class="glass-sheen"></div></div>
+            <h3>Ticket System</h3>
+            <p class="muted">Kanalizovan support sa naprednim makroima.</p>
+            <div class="price">$8.99</div>
+            <button class="btn buy" data-name="Ticket System" data-price="8.99">Buy Now</button>
+          </article>
+
+          <article class="card product other">
+            <div class="card-top"><div class="chip">Tools</div><div class="glass-sheen"></div></div>
+            <h3>Verification Flow</h3>
+            <p class="muted">Captcha, reakcije i pravila, anti-raid protokoli.</p>
+            <div class="price">$9.99</div>
+            <button class="btn buy" data-name="Verification Flow" data-price="9.99">Buy Now</button>
+          </article>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- ========= REVIEWS ========= -->
+  <section id="reviews" class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="title-lg">What clients <span class="accent">say</span></h2>
+        <p class="muted">Par kratkih utisaka — rotira se automatski.</p>
+      </div>
+
+      <div class="carousel glass" id="carousel">
+        <div class="slide active">
+          <p>“Stvarno instant isporuka, i ispalo je bolje nego što sam zamislio. Preporuka!”</p>
+          <div class="who">— Marko, Owner @GalaxyRP</div>
+        </div>
+        <div class="slide">
+          <p>“Bot po meri, moderacija top! Komunikacija brza i jasna.”</p>
+          <div class="who">— Nina, Community Manager</div>
+        </div>
+        <div class="slide">
+          <p>“Video editing za promo — profi nivo. Vredno svake pare.”</p>
+          <div class="who">— Milan, Streamer</div>
+        </div>
+
+        <button class="car-btn prev" aria-label="Prev">‹</button>
+        <button class="car-btn next" aria-label="Next">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= PRICING ========= -->
+  <section id="pricing" class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="title-lg">Simple <span class="accent">pricing</span></h2>
+        <p class="muted">Transparentno i jasno — izaberi plan i kreni.</p>
+      </div>
+
+      <div class="grid-3 pricing">
+        <article class="price-card">
+          <h3>Starter</h3>
+          <div class="big-price">$9<span>/mo</span></div>
+          <ul class="checklist">
+            <li>Osnovna podrška</li>
+            <li>1 mali update mesečno</li>
+            <li>Mail podrška</li>
+          </ul>
+          <button class="btn">Choose</button>
+        </article>
+
+        <article class="price-card featured">
+          <div class="flag">Popular</div>
+          <h3>Pro</h3>
+          <div class="big-price">$19<span>/mo</span></div>
+          <ul class="checklist">
+            <li>Prioritetna podrška</li>
+            <li>3 update-a mesečno</li>
+            <li>Discord & Mail</li>
+          </ul>
+          <button class="btn">Choose</button>
+        </article>
+
+        <article class="price-card">
+          <h3>Ultimate</h3>
+          <div class="big-price">$39<span>/mo</span></div>
+          <ul class="checklist">
+            <li>Dedicated kontakt</li>
+            <li>Neograničena sitna podešavanja</li>
+            <li>Full ops team</li>
+          </ul>
+          <button class="btn">Choose</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= FAQ ========= -->
+  <section id="faq" class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="title-lg">Frequently asked <span class="accent">questions</span></h2>
+        <p class="muted">Ako nema odgovora, tu smo na Discordu 24/7.</p>
+      </div>
+
+      <div class="faq">
+        <details class="faq-item" open>
+          <summary>Kako funkcioniše isporuka?</summary>
+          <p>Većina usluga je instant ili u roku od par sati. Za custom narudžbine dogovaramo rok.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Koji su načini plaćanja?</summary>
+          <p>Prihvatamo PayPal i kripto. Po želji možemo ponuditi i alternative.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Da li nudite refund?</summary>
+          <p>Na custom radove ne, ali ukoliko usluga nije isporučena kako je definisano — javite se i rešavamo.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Da li može white-label?</summary>
+          <p>Može — javite se za uslove i okvirnu cenu u zavisnosti od projekta.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= CTA ========= -->
+  <section class="section cta">
+    <div class="container cta-box glass">
+      <h2>Ready to level up your server?</h2>
+      <p class="muted">Klikni ispod — stižemo brzo, radimo čisto i ostavljamo prostor za rast.</p>
+      <div>
+        <a href="#products" class="btn btn-lg">Explore Products</a>
+        <a href="https://discord.com/" class="btn btn-ghost btn-lg" target="_blank" rel="noreferrer">Contact us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= FOOTER ========= -->
   <footer class="footer">
-    <p>© 2025 Boosts.gg. All rights reserved.</p>
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="#"><span class="brand-dot"></span>FTX<span class="accent">STORE</span></a>
+        <p class="muted small">© 2025 FTX Store. All rights reserved.</p>
+      </div>
+      <div class="foot-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#products">Products</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQs</a>
+      </div>
+      <div class="foot-cta">
+        <a class="btn btn-ghost" href="https://t.me/" target="_blank" rel="noreferrer">Telegram</a>
+        <a class="btn" href="https://discord.com/" target="_blank" rel="noreferrer">Discord</a>
+      </div>
+    </div>
   </footer>
 
+  <!-- ========= SCRIPTS ========= -->
   <script>
-    function showSection(id) {
-      document.querySelectorAll(".product-section").forEach(sec => sec.classList.add("hidden"));
-      document.getElementById(id).classList.remove("hidden");
-    }
+    // Mobile drawer
+    const hamburger = document.getElementById('hamburger');
+    const drawer = document.getElementById('drawer');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      drawer.classList.toggle('open');
+    });
+    document.querySelectorAll('.drawer-link').forEach(a => {
+      a.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        hamburger.classList.remove('open');
+      });
+    });
 
-    // Default: show only first tab
-    window.onload = () => {
-      showSection("video");
+    // Sidebar filter
+    const links = document.querySelectorAll('.side-link');
+    const products = document.querySelectorAll('.product');
+    links.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cat = btn.dataset.cat;
+        if (btn.classList.contains('active') && !btn.classList.contains('toggled')) {
+          // second click = show all
+          products.forEach(p => p.style.display = 'block');
+          links.forEach(l => { l.classList.remove('toggled'); l.classList.remove('active'); });
+          btn.classList.add('active');
+          return;
+        }
+        links.forEach(l => { l.classList.remove('active'); l.classList.remove('toggled'); });
+        btn.classList.add('active'); btn.classList.add('toggled');
+        products.forEach(p => {
+          p.style.display = p.classList.contains(cat) ? 'block' : 'none';
+        });
+      });
+    });
+
+    // Buy buttons (demo)
+    document.querySelectorAll('.buy').forEach(b => {
+      b.addEventListener('click', () => {
+        const name = b.dataset.name;
+        const price = b.dataset.price;
+        alert(`Buying: ${name} — $${price}\n(ovde kasnije ubaciš pravi checkout)`);
+      });
+    });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('reveal');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.section .container > * , .card, .feature-card, .price-card, .faq-item, .cta-box')
+      .forEach(el => io.observe(el));
+
+    // Carousel
+    const slides = [...document.querySelectorAll('#carousel .slide')];
+    let idx = 0;
+    const next = () => {
+      slides[idx].classList.remove('active');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('active');
     };
+    const prev = () => {
+      slides[idx].classList.remove('active');
+      idx = (idx - 1 + slides.length) % slides.length;
+      slides[idx].classList.add('active');
+    };
+    document.querySelector('#carousel .next').addEventListener('click', next);
+    document.querySelector('#carousel .prev').addEventListener('click', prev);
+    setInterval(next, 5000);
+
+    // Subtle sparkles canvas
+    const cvs = document.getElementById('spark');
+    const ctx = cvs.getContext('2d');
+    let W, H, parts = [];
+    const resize = () => {
+      W = cvs.width = window.innerWidth;
+      H = cvs.height = window.innerHeight;
+      parts = Array.from({ length: 60 }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 1.8 + 0.6,
+        a: Math.random() * Math.PI * 2,
+        s: Math.random() * 0.6 + 0.2
+      }));
+    };
+    const tick = () => {
+      ctx.clearRect(0, 0, W, H);
+      parts.forEach(p => {
+        p.x += Math.cos(p.a) * p.s;
+        p.y += Math.sin(p.a) * p.s;
+        p.a += 0.01;
+        if (p.x < 0) p.x = W;
+        if (p.x > W) p.x = 0;
+        if (p.y < 0) p.y = H;
+        if (p.y > H) p.y = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(173, 216, 230, 0.6)';
+        ctx.fill();
+      });
+      requestAnimationFrame(tick);
+    };
+    window.addEventListener('resize', resize);
+    resize(); tick();
   </script>
 </body>
 </html>
