@@ -405,186 +405,457 @@
   </footer>
 
   <!-- ========= SCRIPTS ========= -->
-  
+  <script>
+    // Mobile drawer
+    const hamburger = document.getElementById('hamburger');
+    const drawer = document.getElementById('drawer');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      drawer.classList.toggle('open');
+    });
+    document.querySelectorAll('.drawer-link').forEach(a => {
+      a.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        hamburger.classList.remove('open');
+      });
+    });
 
-  
+    // Sidebar filter
+    const links = document.querySelectorAll('.side-link');
+    const products = document.querySelectorAll('.product');
+    links.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cat = btn.dataset.cat;
+        if (btn.classList.contains('active') && !btn.classList.contains('toggled')) {
+          // second click = show all
+          products.forEach(p => p.style.display = 'block');
+          links.forEach(l => { l.classList.remove('toggled'); l.classList.remove('active'); });
+          btn.classList.add('active');
+          return;
+        }
+        links.forEach(l => { l.classList.remove('active'); l.classList.remove('toggled'); });
+        btn.classList.add('active'); btn.classList.add('toggled');
+        products.forEach(p => {
+          p.style.display = p.classList.contains(cat) ? 'block' : 'none';
+        });
+      });
+    });
 
+    // Buy buttons (demo)
+    document.querySelectorAll('.buy').forEach(b => {
+      b.addEventListener('click', () => {
+        const name = b.dataset.name;
+        const price = b.dataset.price;
+        alert(`Buying: ${name} — $${price}\n(ovde kasnije ubaciš pravi checkout)`);
+      });
+    });
 
-  <!-- FTX Checkout Modal -->
-  <div id="ftx-backdrop" class="ftx-backdrop" aria-hidden="true"></div>
-  <div id="ftx-checkout" class="ftx-modal-wrap" aria-hidden="true">
-    <div class="ftx-modal" role="dialog" aria-modal="true" aria-labelledby="ftx-co-title">
-      <div class="ftx-gradient-bar"></div>
-      <div class="ftx-modal-header">
-        <h3 id="ftx-co-title">Checkout</h3>
-        <button class="ftx-x" id="ftx-co-close" aria-label="Close">×</button>
-      </div>
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('reveal');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.section .container > * , .card, .feature-card, .price-card, .faq-item, .cta-box')
+      .forEach(el => io.observe(el));
 
-      <div class="ftx-modal-body">
-        <div class="ftx-panel">
+    // Carousel
+    const slides = [...document.querySelectorAll('#carousel .slide')];
+    let idx = 0;
+    const next = () => {
+      slides[idx].classList.remove('active');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('active');
+    };
+    const prev = () => {
+      slides[idx].classList.remove('active');
+      idx = (idx - 1 + slides.length) % slides.length;
+      slides[idx].classList.add('active');
+    };
+    document.querySelector('#carousel .next').addEventListener('click', next);
+    document.querySelector('#carousel .prev').addEventListener('click', prev);
+    setInterval(next, 5000);
+
+    // Subtle sparkles canvas
+    const cvs = document.getElementById('spark');
+    const ctx = cvs.getContext('2d');
+    let W, H, parts = [];
+    const resize = () => {
+      W = cvs.width = window.innerWidth;
+      H = cvs.height = window.innerHeight;
+      parts = Array.from({ length: 60 }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 1.8 + 0.6,
+        a: Math.random() * Math.PI * 2,
+        s: Math.random() * 0.6 + 0.2
+      }));
+    };
+    const tick = () => {
+      ctx.clearRect(0, 0, W, H);
+      parts.forEach(p => {
+        p.x += Math.cos(p.a) * p.s;
+        p.y += Math.sin(p.a) * p.s;
+        p.a += 0.01;
+        if (p.x < 0) p.x = W;
+        if (p.x > W) p.x = 0;
+        if (p.y < 0) p.y = H;
+        if (p.y > H) p.y = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(173, 216, 230, 0.6)';
+        ctx.fill();
+      });
+      requestAnimationFrame(tick);
+    };
+    window.addEventListener('resize', resize);
+    resize(); tick();
+  </script>
+
+  <script>
+  const grid = document.getElementById("productGrid");
+  const buttons = document.querySelectorAll(".sidebar button");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      // reset klasa
+      grid.className = "grid-3 product-grid " + btn.dataset.category;
+    });
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    effect: "fade",
+    fadeEffect: { crossFade: true },
+  });
+</script>
+<!-- FTX Checkout Modal -->
+<div id="ftx-checkout" class="ftx-modal-backdrop" aria-hidden="true">
+  <div class="ftx-modal" role="dialog" aria-modal="true" aria-labelledby="ftx-co-title">
+    <div class="ftx-gradient-bar"></div>
+
+    <div class="ftx-modal-header">
+      <h4 id="ftx-co-title">Checkout</h4>
+      <button class="ftx-x" id="ftx-co-close" aria-label="Close">×</button>
+    </div>
+
+    <div class="ftx-modal-body">
+      <!-- Left: product & pricing -->
+      <div class="ftx-panel">
+        <div class="ftx-field">
+          <label>Product</label>
+          <input id="ftx-co-product" type="text" readonly>
+        </div>
+
+        <div class="ftx-row">
+          <div class="ftx-field" style="flex:1">
+            <label>Unit price (USD)</label>
+            <input id="ftx-co-price" type="text" readonly>
+          </div>
+
           <div class="ftx-field">
-            <label>Product</label>
-            <input id="ftx-co-product" type="text" readonly>
-          </div>
-          <div class="ftx-row">
-            <div class="ftx-field" style="flex:1">
-              <label>Unit price (USD)</label>
-              <input id="ftx-co-price" type="text" readonly>
+            <label>Quantity</label>
+            <div class="ftx-qty">
+              <button type="button" id="ftx-q-minus" aria-label="Decrease">–</button>
+              <input id="ftx-q-value" type="number" min="1" value="1">
+              <button type="button" id="ftx-q-plus" aria-label="Increase">+</button>
             </div>
-            <div class="ftx-field">
-              <label>Quantity</label>
-              <div class="ftx-qty">
-                <button type="button" id="ftx-q-minus" aria-label="Decrease">–</button>
-                <input id="ftx-q-value" type="number" min="1" value="1">
-                <button type="button" id="ftx-q-plus" aria-label="Increase">+</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="ftx-total">
-            <span>Subtotal</span><span id="ftx-subtotal">$0.00</span>
-          </div>
-          <div class="ftx-total ftx-grand">
-            <span>Total</span><span id="ftx-total">$0.00</span>
           </div>
         </div>
 
-        <div class="ftx-panel">
-          <div class="ftx-field">
-            <label>Discord username (for delivery)</label>
-            <input id="ftx-discord" placeholder="e.g. johndoe">
+        <div class="ftx-split">
+          <div class="ftx-field" style="margin:0">
+            <label>Promo code</label>
+            <input id="ftx-coupon" placeholder="Enter code">
+            <div id="ftx-coupon-msg" class="ftx-note"></div>
           </div>
-          <div class="ftx-field">
-            <label>Email (receipt)</label>
-            <input id="ftx-email" placeholder="you@example.com">
+          <button id="ftx-apply" class="ftx-btn" style="width:auto;padding:10px 16px;margin-top:20px">Apply</button>
+        </div>
+
+        <div class="ftx-total">
+          <span>Subtotal</span><span id="ftx-subtotal">$0.00</span>
+        </div>
+        <div class="ftx-total" style="font-size:16px;font-weight:600">
+          <span>Discount</span><span id="ftx-discount">$0.00</span>
+        </div>
+        <div class="ftx-total" style="margin-top:6px;font-size:20px">
+          <span>Total</span><span id="ftx-total">$0.00</span>
+        </div>
+      </div>
+
+      <!-- Right: customer & payment -->
+      <div class="ftx-panel">
+        <div class="ftx-field">
+          <label>Discord username (for delivery)</label>
+          <input id="ftx-discord" placeholder="e.g. johndoe">
+        </div>
+
+        <div class="ftx-field">
+          <label>Email (receipt)</label>
+          <input id="ftx-email" placeholder="you@example.com">
+        </div>
+
+        <div class="ftx-field">
+          <label>Payment method</label>
+          <div class="ftx-pay-methods">
+            <button class="ftx-pay-btn" data-method="Stripe">Stripe</button>
+            <button class="ftx-pay-btn" data-method="Crypto">Crypto</button>
+            <button class="ftx-pay-btn" data-method="PayPal">PayPal</button>
           </div>
-          <div class="ftx-field">
-            <label>Payment method</label>
-            <div class="ftx-pay-methods">
-              <button class="ftx-pay-btn" data-method="PayPal">PayPal</button>
-              <button class="ftx-pay-btn" data-method="Crypto">Crypto</button>
-            </div>
+          <div class="ftx-note" style="margin-top:8px">
+            (Buttons are demo placeholders — connect to your processor.)
           </div>
-          <button id="ftx-checkout-btn" class="ftx-btn" style="margin-top:10px">Pay Now</button>
-          <div id="ftx-final-msg" class="ftx-note" style="margin-top:8px"></div>
+        </div>
+
+        <button id="ftx-checkout-btn" class="ftx-btn" style="margin-top:10px">Pay Now</button>
+        <div id="ftx-final-msg" class="ftx-note" style="margin-top:8px"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /FTX Checkout Modal -->
+
+<script>
+ // Helpers
+const $ = (s, root=document) => root.querySelector(s);
+const $$ = (s, root=document) => Array.from(root.querySelectorAll(s));
+const fmt = n => '$' + Number(n).toFixed(2);
+
+(() => {
+  // State
+  let basePrice = 0;
+  let qty = 1;
+  let discountPct = 0;
+
+  // Elements
+  const modal = $('#ftx-checkout');
+  const closeBtn = $('#ftx-co-close');
+
+  const elProduct = $('#ftx-co-product');
+  const elPrice   = $('#ftx-co-price');
+  const elQty     = $('#ftx-q-value');
+  const elSub     = $('#ftx-subtotal');
+  const elDisc    = $('#ftx-discount');
+  const elTotal   = $('#ftx-total');
+  const elCoupon  = $('#ftx-coupon');
+  const elCouponMsg = $('#ftx-coupon-msg');
+
+  const qMinus = $('#ftx-q-minus');
+  const qPlus  = $('#ftx-q-plus');
+
+  const payBtns = $$('.ftx-pay-btn');
+  const payNow  = $('#ftx-checkout-btn');
+  const finalMsg= $('#ftx-final-msg');
+  const discord = $('#ftx-discord');
+  const email   = $('#ftx-email');
+
+  // Open modal on any .buy button
+  $$('.buy').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = btn.dataset.product || 'Product';
+      basePrice = parseFloat(btn.dataset.price || '0');
+      qty = 1; discountPct = 0;
+
+      elProduct.value = name;
+      elPrice.value = fmt(basePrice);
+      elQty.value = String(qty);
+      elCoupon.value = '';
+      elCouponMsg.textContent = '';
+      elCouponMsg.className = 'ftx-note';
+
+      recalc();
+      openModal();
+    });
+  });
+
+  function openModal(){ modal.style.display = 'flex'; modal.setAttribute('aria-hidden','false'); }
+  function closeModal(){ modal.style.display = 'none'; modal.setAttribute('aria-hidden','true'); }
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+
+  // Qty controls
+  qMinus.addEventListener('click', () => {
+    qty = Math.max(1, parseInt(elQty.value || '1') - 1);
+    elQty.value = String(qty); recalc();
+  });
+  qPlus.addEventListener('click', () => {
+    qty = Math.max(1, parseInt(elQty.value || '1') + 1);
+    elQty.value = String(qty); recalc();
+  });
+  elQty.addEventListener('input', () => {
+    qty = Math.max(1, parseInt(elQty.value || '1')); recalc();
+  });
+
+  // Coupons (demo). Edit as needed.
+  // Example: FTX10 => 10%, FTX25 => 25%
+  $('#ftx-apply').addEventListener('click', ()=>{
+    const code = (elCoupon.value || '').trim().toUpperCase();
+    const table = { 'FTX10':10, 'FTX25':25 };
+    if (table[code]) {
+      discountPct = table[code];
+      elCouponMsg.textContent = `Code applied: -${discountPct}%`;
+      elCouponMsg.className = 'ftx-note ftx-ok';
+    } else if (code === '') {
+      discountPct = 0;
+      elCouponMsg.textContent = 'No code entered.';
+      elCouponMsg.className = 'ftx-note';
+    } else {
+      discountPct = 0;
+      elCouponMsg.textContent = 'Invalid code.';
+      elCouponMsg.className = 'ftx-note ftx-err';
+    }
+    recalc();
+  });
+
+  function recalc(){
+    const sub = basePrice * qty;
+    const disc = sub * (discountPct/100);
+    const total = sub - disc;
+    elSub.textContent = fmt(sub);
+    elDisc.textContent = '-' + fmt(disc);
+    elTotal.textContent = fmt(total);
+  }
+
+  // Choose payment method (visual selection)
+  payBtns.forEach(b=>{
+    b.addEventListener('click', ()=>{
+      payBtns.forEach(x=> x.style.borderColor='rgba(255,255,255,.07)');
+      b.style.borderColor='rgba(139,92,246,.8)';
+      b.dataset.selected='1';
+    });
+  });
+
+  // Pay
+  payNow.addEventListener('click', ()=>{
+    const method = payBtns.find(x=> x.style.borderColor.includes('246'));
+    const dUser = (discord.value || '').trim();
+    const mail  = (email.value || '').trim();
+
+    if (!dUser || !mail || !method) {
+      finalMsg.textContent = 'Please fill Discord, Email and choose a payment method.';
+      finalMsg.className = 'ftx-note ftx-err';
+      return;
+    }
+
+    // TODO: Ovde spoji sa backend-om/procesorom:
+    // - Stripe Checkout link
+    // - Coinbase Commerce
+    // - PayPal Smart Buttons / link
+    finalMsg.textContent = 'Order created. Redirecting to payment…';
+    finalMsg.className = 'ftx-note ftx-ok';
+
+    // Primer redirecta:
+    // window.location.href = `/pay?method=${encodeURIComponent(method.dataset.method)}&p=${encodeURIComponent(elProduct.value)}&q=${qty}`;
+  });
+})();
+<script>
+
+<script>
+  document.querySelectorAll(".buy").forEach(button => {
+    button.addEventListener("click", () => {
+      const product = button.getAttribute("data-product");  // UZIMA IME PROIZVODA
+      const price = button.getAttribute("data-price");      // UZIMA CENU
+      alert(`Buying: ${product} — $${price}\n\n(ovde kasnije ubaciš pravi checkout)`);
+    });
+  });
+</script>
+
+
+  <!-- Checkout Modal -->
+  <div id="checkout-modal" class="checkout-modal">
+    <div class="checkout-content">
+      <span class="close-btn">&times;</span>
+      <h2>Checkout</h2>
+      <div class="checkout-grid">
+        <div class="checkout-left">
+          <label>Product</label>
+          <input type="text" id="checkout-product" readonly />
+          <label>Unit price (USD)</label>
+          <input type="text" id="checkout-price" readonly />
+          <label>Quantity</label>
+          <div class="quantity-control">
+            <button id="decrease">-</button>
+            <input type="number" id="checkout-qty" value="1" min="1" />
+            <button id="increase">+</button>
+          </div>
+          <div class="totals">
+            <p>Subtotal: <span id="subtotal">$0.00</span></p>
+            <p>Total: <span id="total">$0.00</span></p>
+          </div>
+        </div>
+        <div class="checkout-right">
+          <label>Discord username (for delivery)</label>
+          <input type="text" id="discord-username" placeholder="e.g. johndoe" />
+          <label>Email (receipt)</label>
+          <input type="email" id="email" placeholder="you@example.com" />
+          <label>Payment method</label>
+          <div class="payment-methods">
+            <button data-method="PayPal">PayPal</button>
+            <button data-method="Crypto">Crypto</button>
+          </div>
+          <button class="pay-btn">Pay Now</button>
         </div>
       </div>
     </div>
   </div>
+  
 
+<script>
+  const modal = document.getElementById("checkout-modal");
+  const closeBtn = document.querySelector(".close-btn");
+  const productInput = document.getElementById("checkout-product");
+  const priceInput = document.getElementById("checkout-price");
+  const qtyInput = document.getElementById("checkout-qty");
+  const subtotalEl = document.getElementById("subtotal");
+  const totalEl = document.getElementById("total");
 
-  <script>
-  (function(){
-    const $ = (s, r=document)=>r.querySelector(s);
-    const $$ = (s, r=document)=>Array.from(r.querySelectorAll(s));
-    const fmt = n => '$' + Number(n).toFixed(2);
-
-    let price = 0, qty = 1;
-
-    const backdrop = $('#ftx-backdrop');
-    const wrap = $('#ftx-checkout');
-    const closeBtn = $('#ftx-co-close');
-    const elProduct = $('#ftx-co-product');
-    const elPrice = $('#ftx-co-price');
-    const qMinus = $('#ftx-q-minus');
-    const qPlus  = $('#ftx-q-plus');
-    const elQty  = $('#ftx-q-value');
-    const elSub  = $('#ftx-subtotal');
-    const elTot  = $('#ftx-total');
-    const payBtns = $$('.ftx-pay-btn');
-    const payNow  = $('#ftx-checkout-btn');
-    const finalMsg= $('#ftx-final-msg');
-    const discord = $('#ftx-discord');
-    const email   = $('#ftx-email');
-
-    function openModal(){
-      backdrop.setAttribute('aria-hidden','false');
-      wrap.setAttribute('aria-hidden','false');
-      backdrop.style.display='block';
-      wrap.style.display='flex';
-      document.body.classList.add('ftx-blur');
-    }
-    function closeModal(){
-      backdrop.setAttribute('aria-hidden','true');
-      wrap.setAttribute('aria-hidden','true');
-      backdrop.style.display='none';
-      wrap.style.display='none';
-      document.body.classList.remove('ftx-blur');
-    }
-    closeBtn.addEventListener('click', closeModal);
-    backdrop.addEventListener('click', closeModal);
-
-    // Wire up buy buttons
-    $$('.buy').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        // Product name
-        let name = btn.dataset.product;
-        if(!name){
-          // fallback: nearest .price or previous h3
-          const card = btn.closest('.product, .card, article, .product-card') || document;
-          const h3 = card.querySelector('h3');
-          name = h3 ? h3.textContent.trim() : 'Product';
-        }
-        // Price
-        let p = btn.dataset.price;
-        if(!p){
-          const card = btn.closest('.product, .card, article, .product-card') || document;
-          const priceEl = card.querySelector('.price');
-          if(priceEl) p = priceEl.textContent.replace(/[^0-9.]/g,'');
-        }
-        price = parseFloat(p || '0');
-        qty = 1;
-
-        elProduct.value = name;
-        elPrice.value = price.toFixed(2);
-        elQty.value = '1';
-        recalc();
-        // select none initially
-        payBtns.forEach(x=> x.classList.remove('selected'));
-        finalMsg.textContent = '';
-
-        openModal();
-      });
+  document.querySelectorAll(".buy").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const product = btn.dataset.product;
+      const price = parseFloat(btn.dataset.price);
+      productInput.value = product;
+      priceInput.value = `$${price.toFixed(2)}`;
+      qtyInput.value = 1;
+      subtotalEl.textContent = `$${price.toFixed(2)}`;
+      totalEl.textContent = `$${price.toFixed(2)}`;
+      modal.style.display = "flex";
+      document.body.classList.add("ftx-blur");
     });
+  });
 
-    function recalc(){
-      const sub = price * Math.max(1, parseInt(elQty.value||'1'));
-      elSub.textContent = fmt(sub);
-      elTot.textContent = fmt(sub);
-    }
+  if(closeBtn){
+    closeBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+      document.body.classList.remove("ftx-blur");
+    });
+  }
 
-    qMinus.addEventListener('click', ()=>{
-      const v = Math.max(1, parseInt(elQty.value||'1') - 1);
-      elQty.value = String(v); recalc();
-    });
-    qPlus.addEventListener('click', ()=>{
-      const v = Math.max(1, parseInt(elQty.value||'1') + 1);
-      elQty.value = String(v); recalc();
-    });
-    elQty.addEventListener('input', recalc);
+  document.getElementById("increase").addEventListener("click", () => {
+    qtyInput.value = parseInt(qtyInput.value) + 1;
+    updateTotals();
+  });
+  document.getElementById("decrease").addEventListener("click", () => {
+    if (qtyInput.value > 1) qtyInput.value = parseInt(qtyInput.value) - 1;
+    updateTotals();
+  });
 
-    payBtns.forEach(b=>{
-      b.addEventListener('click', ()=>{
-        payBtns.forEach(x=> x.classList.remove('selected'));
-        b.classList.add('selected');
-      });
-    });
-
-    payNow.addEventListener('click', ()=>{
-      const methodBtn = payBtns.find(x=> x.classList.contains('selected'));
-      const dUser = (discord.value||'').trim();
-      const mail  = (email.value||'').trim();
-      if(!dUser || !mail || !methodBtn){
-        finalMsg.textContent = 'Please fill Discord, Email and choose a payment method.';
-        finalMsg.className = 'ftx-note ftx-err';
-        return;
-      }
-      finalMsg.textContent = 'Order created. Redirecting to ' + methodBtn.dataset.method + '…';
-      finalMsg.className = 'ftx-note ftx-ok';
-      // TODO: redirect to your backend/pay links
-    });
-  })();
-  </script>
+  function updateTotals() {
+    const price = parseFloat(priceInput.value.replace("$", ""));
+    const qty = parseInt(qtyInput.value);
+    subtotalEl.textContent = `$${(price * qty).toFixed(2)}`;
+    totalEl.textContent = `$${(price * qty).toFixed(2)}`;
+  }
+</script>
 
 </body>
 </html>
