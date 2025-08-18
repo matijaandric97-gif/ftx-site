@@ -284,3 +284,27 @@ body{
   margin-right: 10px; /* razmak između slike i teksta */
   border-radius: 6px; /* opciono, da zaobliš ikonu */
 }
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background: #111; /* boja pozadine */
+  color: #fff;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.logo img {
+  width: 28px;   /* prilagodi velicinu */
+  height: 28px;
+  margin-right: 8px;
+}
+
+.highlight {
+  color: #8b5cf6; /* ljubičasta boja */
+}
