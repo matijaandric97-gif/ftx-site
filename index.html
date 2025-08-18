@@ -441,15 +441,6 @@
       });
     });
 
-    // Buy buttons (demo)
-    document.querySelectorAll('.buy').forEach(b => {
-      b.addEventListener('click', () => {
-        const name = b.dataset.name;
-        const price = b.dataset.price;
-        alert(`Buying: ${name} — $${price}\n(ovde kasnije ubaciš pravi checkout)`);
-      });
-    });
-
     // Reveal on scroll
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
