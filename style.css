@@ -483,3 +483,8 @@ body{font-family:Inter,system-ui,Segoe UI,Arial,sans-serif}
   filter:saturate(1.2); animation:ftx-slide 4s linear infinite
 }
 @keyframes ftx-slide{from{background-position:0 0} to{background-position:300px 0}}
+/* Blur effect when checkout modal opens */
+body.ftx-blur > *:not(#ftx-backdrop):not(#ftx-checkout) {
+  filter: blur(6px);
+  transition: filter .2s ease;
+}
