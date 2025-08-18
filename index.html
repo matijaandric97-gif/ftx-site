@@ -624,6 +624,45 @@
 </div>
 <!-- /FTX Checkout Modal -->
 
+<!-- U checkout modalu -->
+<div id="paypal-button-container"></div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=AZZU5WwPQ1HKRLvNZOCInPz2jXaSdO_yVFVK0JPO7Mxe90ZSTfB7fzbi-JHaCS-h1qEaLJ89CA-gfoP8&currency=USD"></script>
+
+<script>
+  function renderPayPalButton(price) {
+    document.getElementById("paypal-button-container").innerHTML = ""; // reset
+
+    paypal.Buttons({
+      style: {
+        color: 'blue',
+        shape: 'pill',
+        label: 'pay'
+      },
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: price
+            }
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert('Transaction completed by ' + details.payer.name.given_name);
+        });
+      }
+    }).render('#paypal-button-container');
+  }
+
+  // Kad klikneš "Pay Now" unutar modala
+  document.getElementById("pay-now").addEventListener("click", function() {
+    let price = document.querySelector("#checkout-price").value.replace("$",""); 
+    renderPayPalButton(price);
+  });
+</script>
+
 <script>
  // Helpers
 const $ = (s, root=document) => root.querySelector(s);
