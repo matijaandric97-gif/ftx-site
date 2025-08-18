@@ -398,3 +398,88 @@ body{
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+:root{
+  --ftx-bg:#0b0f1a;
+  --ftx-card:#121826;
+  --ftx-muted:#9aa4b2;
+  --ftx-text:#e5e7eb;
+  --ftx-primary:#8b5cf6;
+  --ftx-primary-2:#3b82f6;
+  --ftx-success:#22c55e;
+  --ftx-danger:#ef4444;
+  --ftx-glass: rgba(255,255,255,.06);
+}
+body{font-family:Inter,system-ui,Segoe UI,Arial,sans-serif}
+
+/* Modal */
+.ftx-modal-backdrop{
+  position:fixed;inset:0;background:rgba(0,0,0,.55);
+  display:none;align-items:center;justify-content:center;z-index:9999;
+  backdrop-filter: blur(4px);
+}
+.ftx-modal{
+  width:min(680px,92vw);border-radius:20px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 30px 60px rgba(0,0,0,.55);
+  color:var(--ftx-text);
+}
+.ftx-modal-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.07)
+}
+.ftx-modal-header h4{margin:0;font-size:18px}
+.ftx-x{background:transparent;border:none;color:var(--ftx-muted);font-size:22px;cursor:pointer}
+.ftx-modal-body{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:18px}
+@media (max-width:720px){.ftx-modal-body{grid-template-columns:1fr}}
+
+.ftx-panel{
+  background:var(--ftx-glass);border:1px solid rgba(255,255,255,.06);
+  border-radius:14px;padding:14px
+}
+.ftx-split{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+.ftx-row{display:flex;gap:10px}
+
+.ftx-field{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
+.ftx-field label{font-size:12px;color:var(--ftx-muted)}
+.ftx-field input, .ftx-field select{
+  background:#0e1422;border:1px solid rgba(255,255,255,.06);
+  color:var(--ftx-text);border-radius:10px;padding:10px 12px;outline:none
+}
+.ftx-field input:focus, .ftx-field select:focus{border-color:rgba(139,92,246,.55)}
+
+.ftx-qty{
+  display:inline-flex;align-items:center;border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;overflow:hidden
+}
+.ftx-qty button{background:transparent;border:none;color:var(--ftx-text);width:36px;height:36px;cursor:pointer}
+.ftx-qty input{width:56px;text-align:center;border:none;background:transparent}
+
+.ftx-pay-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+.ftx-pay-btn{
+  background:#0e1422;border:1px solid rgba(255,255,255,.07);
+  border-radius:12px;padding:10px;text-align:center;cursor:pointer;color:var(--ftx-text);font-weight:600
+}
+.ftx-pay-btn:hover{border-color:rgba(139,92,246,.55)}
+
+.ftx-total{
+  display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:18px;margin-top:8px
+}
+.ftx-note{font-size:12px;color:var(--ftx-muted)}
+.ftx-ok{color:var(--ftx-success)} .ftx-err{color:var(--ftx-danger)}
+
+.ftx-btn{
+  appearance:none;border:none;cursor:pointer;
+  border-radius:12px;padding:10px 14px;font-weight:700;
+  color:#fff;background:linear-gradient(90deg,var(--ftx-primary),var(--ftx-primary-2));
+  transition:transform .08s ease,opacity .2s ease;
+}
+.ftx-btn:hover{opacity:.95}
+.ftx-btn:active{transform:translateY(1px)}
+
+.ftx-gradient-bar{
+  height:3px;background:linear-gradient(90deg,var(--ftx-primary),var(--ftx-primary-2));
+  filter:saturate(1.2); animation:ftx-slide 4s linear infinite
+}
+@keyframes ftx-slide{from{background-position:0 0} to{background-position:300px 0}}
