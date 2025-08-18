@@ -263,3 +263,24 @@ body{
 .sidebar button:hover {
   background: #444;
 }
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background: #111; /* pozadina */
+  color: #fff;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.logo img {
+  width: 28px;   /* veličina ikonice */
+  height: 28px;
+  margin-right: 10px; /* razmak između slike i teksta */
+  border-radius: 6px; /* opciono, da zaobliš ikonu */
+}
