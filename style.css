@@ -483,16 +483,93 @@ body{font-family:Inter,system-ui,Segoe UI,Arial,sans-serif}
   filter:saturate(1.2); animation:ftx-slide 4s linear infinite
 }
 @keyframes ftx-slide{from{background-position:0 0} to{background-position:300px 0}}
-/* Dark checkout inputs */
-.checkout-left input, .checkout-right input {
-  background: #2a2a2a;
-  color: #fff;
-  border: none;
-  padding: 8px;
-  border-radius: 6px;
+/* Checkout Modal */
+.checkout-modal {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
 }
 
-/* PayPal button container spacing */
-#paypal-button-container {
-  margin-top: 10px;
+.checkout-content {
+  background: rgba(20,20,30,0.95);
+  border-radius: 16px;
+  padding: 20px;
+  width: 800px;
+  max-width: 95%;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+.checkout-content h2 {
+  margin-top: 0;
+}
+
+.close-btn {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.checkout-left, .checkout-right {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checkout-left input, .checkout-right input {
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quantity-control button {
+  padding: 6px 10px;
+  background: #222;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.payment-methods button {
+  margin-right: 10px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.pay-btn {
+  margin-top: 15px;
+  background: linear-gradient(90deg,#7b2ff7,#f107a3);
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+body.ftx-blur > *:not(#checkout-modal) {
+  filter: blur(6px);
+  transition: filter .2s ease;
 }

@@ -606,7 +606,6 @@
 
         <div class="ftx-field">
           <label>Payment method</label>
-          <div id="paypal-button-container"></div>
           <div class="ftx-pay-methods">
             <button class="ftx-pay-btn" data-method="Stripe">Stripe</button>
             <button class="ftx-pay-btn" data-method="Crypto">Crypto</button>
@@ -771,31 +770,90 @@ const fmt = n => '$' + Number(n).toFixed(2);
 </script>
 
 
-<script src="https://www.paypal.com/sdk/js?client-id=AZZU5WwPQ1HKRLvNZOCInPz2jXaSdO_yVFVK0JPO7Mxe90ZSTfB7fzbi-JHaCS-h1qEaLJ89CA-gfoP8&currency=USD"></script>
+  <!-- Checkout Modal -->
+  <div id="checkout-modal" class="checkout-modal">
+    <div class="checkout-content">
+      <span class="close-btn">&times;</span>
+      <h2>Checkout</h2>
+      <div class="checkout-grid">
+        <div class="checkout-left">
+          <label>Product</label>
+          <input type="text" id="checkout-product" readonly />
+          <label>Unit price (USD)</label>
+          <input type="text" id="checkout-price" readonly />
+          <label>Quantity</label>
+          <div class="quantity-control">
+            <button id="decrease">-</button>
+            <input type="number" id="checkout-qty" value="1" min="1" />
+            <button id="increase">+</button>
+          </div>
+          <div class="totals">
+            <p>Subtotal: <span id="subtotal">$0.00</span></p>
+            <p>Total: <span id="total">$0.00</span></p>
+          </div>
+        </div>
+        <div class="checkout-right">
+          <label>Discord username (for delivery)</label>
+          <input type="text" id="discord-username" placeholder="e.g. johndoe" />
+          <label>Email (receipt)</label>
+          <input type="email" id="email" placeholder="you@example.com" />
+          <label>Payment method</label>
+          <div class="payment-methods">
+            <button data-method="PayPal">PayPal</button>
+            <button data-method="Crypto">Crypto</button>
+          </div>
+          <button class="pay-btn">Pay Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
 <script>
-paypal.Buttons({
-    createOrder: function(data, actions) {
-        const product = document.getElementById("checkout-product").value;
-        const price = document.getElementById("checkout-price").value.replace("$","");
-        const qty = document.getElementById("checkout-qty").value;
-        const total = (parseFloat(price) * parseInt(qty)).toFixed(2);
-        return actions.order.create({
-            purchase_units: [{
-                description: product,
-                amount: { value: total }
-            }]
-        });
-    },
-    onApprove: function(data, actions) {
-        return actions.order.capture().then(function(details) {
-            alert('Payment successful! Thank you, ' + details.payer.name.given_name);
-        });
-    },
-    onError: function(err) {
-        console.error(err);
-        alert('There was an error processing your payment.');
-    }
-}).render('#paypal-button-container');
+  const modal = document.getElementById("checkout-modal");
+  const closeBtn = document.querySelector(".close-btn");
+  const productInput = document.getElementById("checkout-product");
+  const priceInput = document.getElementById("checkout-price");
+  const qtyInput = document.getElementById("checkout-qty");
+  const subtotalEl = document.getElementById("subtotal");
+  const totalEl = document.getElementById("total");
+
+  document.querySelectorAll(".buy").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const product = btn.dataset.product;
+      const price = parseFloat(btn.dataset.price);
+      productInput.value = product;
+      priceInput.value = `$${price.toFixed(2)}`;
+      qtyInput.value = 1;
+      subtotalEl.textContent = `$${price.toFixed(2)}`;
+      totalEl.textContent = `$${price.toFixed(2)}`;
+      modal.style.display = "flex";
+      document.body.classList.add("ftx-blur");
+    });
+  });
+
+  if(closeBtn){
+    closeBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+      document.body.classList.remove("ftx-blur");
+    });
+  }
+
+  document.getElementById("increase").addEventListener("click", () => {
+    qtyInput.value = parseInt(qtyInput.value) + 1;
+    updateTotals();
+  });
+  document.getElementById("decrease").addEventListener("click", () => {
+    if (qtyInput.value > 1) qtyInput.value = parseInt(qtyInput.value) - 1;
+    updateTotals();
+  });
+
+  function updateTotals() {
+    const price = parseFloat(priceInput.value.replace("$", ""));
+    const qty = parseInt(qtyInput.value);
+    subtotalEl.textContent = `$${(price * qty).toFixed(2)}`;
+    totalEl.textContent = `$${(price * qty).toFixed(2)}`;
+  }
 </script>
 
 </body>
