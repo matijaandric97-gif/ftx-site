@@ -592,8 +592,8 @@ video {
   display: block;
 }
 
-.hidden {
-  display: none;
+.grid {
+  display: grid;
 }
 
 .resize {

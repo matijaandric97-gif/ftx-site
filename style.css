@@ -232,3 +232,34 @@ body{
 .section .container > *{opacity:0; transform: translateY(14px); transition:.6s}
 .section .container > *.reveal{opacity:1; transform:none}
 .card.reveal, .feature-card.reveal, .price-card.reveal, .faq-item.reveal, .cta-box.reveal{opacity:1; transform:none}
+
+/* Svi proizvodi su default sakriveni */
+.product-grid .product {
+  display: none;
+}
+
+/* Kad je grid u nekoj kategoriji, prikazuje samo te proizvode */
+.product-grid.serverdev .product.serverdev,
+.product-grid.bot .product.bot,
+.product-grid.video .product.video,
+.product-grid.picture .product.picture,
+.product-grid.other .product.other {
+  display: block;
+}
+
+/* Malo stilova da dugmad budu lepša */
+.sidebar button {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px;
+  background: #222;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.sidebar button:hover {
+  background: #444;
+}
